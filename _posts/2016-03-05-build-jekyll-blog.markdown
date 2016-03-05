@@ -40,7 +40,4 @@ jekyll server
 
 > 附上修改后的项目的`github`地址，[https://github.com/YL2014/YL2014.github.io][my-jekyll-blog]，欢迎`Star`
 
-
 [my-jekyll-blog]: https://github.com/YL2014/YL2014.github.io
-
-
