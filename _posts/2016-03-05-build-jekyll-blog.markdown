@@ -2,7 +2,7 @@
 layout: post
 title:  "使用jekyll搭建博客及jekyll模板easybook使用方法"
 date:   2016-03-06 00:16
-categories: other
+categories: 其他
 permalink: /archivers/20160306/jekyllblog
 ---
 
