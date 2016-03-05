@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll and EasyBook"
+title:  "Welcome to Jekyll and EasyBook11"
 date:   2014-12-31 09:00:13
 categories: 其他
 permalink: /archivers/hello
