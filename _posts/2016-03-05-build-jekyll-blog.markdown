@@ -3,7 +3,7 @@ layout: post
 title:  "使用jekyll搭建博客及jekyll模板easybook使用方法"
 date:   2016-03-06 00:16:00
 categories: 其他
-permalink: /archivers/jekyllblog
+permalink: /archivers/20160306/jekyllblog
 ---
 
 网上关于在github上搭建静态博客的文章很多，也很详细，这里只是简单记录下本站的搭建过程。
