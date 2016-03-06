@@ -2,7 +2,7 @@
 layout: post
 title:  "使用jekyll搭建博客及jekyll模板easybook使用方法"
 date:   2016-03-06 00:16
-categories: 其他
+categories: other
 permalink: /archivers/20160306/jekyllblog
 ---
 
@@ -29,7 +29,7 @@ jekyll server
 
 ### 发布文章
 
-之前看网上的，使用markdown语法编写好博客后，还需要执行jekyll的相关命令进行生产对应的文档，但是我这里没有这么做。文章在本地写好后使用`jekyll server`进行本地预览，预览成功后，直接将本地修改`push`到`github`上就可以了，直接使用`master`分支，也没有在网上看到的需等待10分钟才能生效的情况发生，上传就可以看了
+之前看网上的，使用markdown语法编写好博客后，还需要执行jekyll的相关命令进行生产对应的文档，但是我这里没有这么做。文章在本地写好后使用`jekyll server`进行本地预览，预览成功后，直接将本地修改`push`到`github`上就可以了，直接使用`master`分支，文档的类型是markdown不是md，否则上传后不显示(md类型的文档本地是可以预览显示的，具体原因还不知)，还要注意文档的日期格式。
 
 ### 结语
 
