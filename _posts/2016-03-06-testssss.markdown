@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "test"
-date:   2016-03-06 00:16:00
-categories: 其他
+date:   2016-03-06 00:00:00
+categories: test
 permalink: /archivers/20160306/test
 ---
 
