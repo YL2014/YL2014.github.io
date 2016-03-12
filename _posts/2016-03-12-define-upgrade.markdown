@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "关于javascript函数声明提升和变量声明提升"
-date:   2016-03-12 00:00
+date:   2016-03-12 00:01
 categories: js
 permalink: /archivers/20160312/define-upgrade
 ---
