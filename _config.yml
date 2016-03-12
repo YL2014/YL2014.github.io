@@ -10,7 +10,7 @@ description: >
 email: 842237798@qq.com
 author: yler
 #avatar: "//www.gravatar.com/avatar/your_email_md5?d=mm&s=135"
-avatar: "http://i1.sinaimg.cn/blog/2011/0906/U4864P899DT20110906200056.jpg"
+avatar: "http://7xrl5v.com1.z0.glb.clouddn.com/github%2Fio%2Fblogblog_pic.jpg"
 profile: 搬砖中...
 #twitter_username: twitter_username
 github_username:  YL2014
@@ -36,3 +36,5 @@ markdown: kramdown
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+
+port: 5000
