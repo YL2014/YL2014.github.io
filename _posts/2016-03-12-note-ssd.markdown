@@ -3,7 +3,7 @@ layout: post
 title:  "宏碁4752g换ssd，光驱位装硬盘(多图慎入)"
 date:   2016-03-12 00:00
 categories: other
-permalink: /archivers/201603126/note-ssd
+permalink: /archivers/20160312/note-ssd
 ---
 
 # 背景
