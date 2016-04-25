@@ -5,8 +5,8 @@ body {
 	line-height: $base-line-height;
 }
 a {
-	text-decoration: none;
-	color: #036;
+	//text-decoration: none;
+	color: #AB2045;
 }
 a:hover, a:focus {
 	text-decoration:underline;
@@ -23,7 +23,7 @@ code,pre {
 	font-size: $code-font-size;
 }
 code {
-	color: #900;
+	color: #fff;
 	//background-color: #fff;
 	background-color: #555;
 	padding: 2px 5px;

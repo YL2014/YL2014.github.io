@@ -180,3 +180,11 @@ function RealLoad(){
 }
 
 RealLoad();
+
+addTarget();
+function addTarget(){
+    var aList = document.querySelectorAll('a');
+    Array.prototype.slice.call(aList).forEach(function(item){
+        item.setAttribute('target','_blank');
+    });
+}
