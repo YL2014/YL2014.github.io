@@ -181,7 +181,7 @@ function RealLoad(){
 
 RealLoad();
 
-addTarget();
+// addTarget();
 function addTarget(){
     var aList = document.querySelectorAll('a');
     Array.prototype.slice.call(aList).forEach(function(item){
