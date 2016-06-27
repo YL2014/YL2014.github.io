@@ -3,7 +3,7 @@ layout: post
 title:  "最近一周开发总结(jssdk)"
 date:   2016-04-11 00:11
 categories: js 微信
-permalink: /archivers/20160411/new-job-summary
+permalink: /archivers/20160411/new-job-summary.html
 ---
 
 刚换工作不久，这一周总的来说还是蛮充实的，也接触到了一些东西，这里做个简单的记录。

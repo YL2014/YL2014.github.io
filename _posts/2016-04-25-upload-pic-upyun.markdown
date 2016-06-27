@@ -3,7 +3,7 @@ layout: post
 title:  "FormData API 上传文件到又拍云"
 date:   2016-04-25 00:11
 categories: js 微信
-permalink: /archivers/20160425/upload-pic-upyun
+permalink: /archivers/20160425/upload-pic-upyun.html
 ---
 
 最近又遇到了上传文件的需求，以前也写过一篇关于利用formdata上传文件的文章(如需浏览，请点击[这里](http://yl2014.github.io/archivers/20160308/async-js-file-upload))，

@@ -3,7 +3,7 @@ layout: post
 title:  "关于js异步上传文件"
 date:   2016-03-08 00:00
 categories: js
-permalink: /archivers/20160308/async-js-file-upload
+permalink: /archivers/20160308/async-js-file-upload.html
 ---
 
 > 本文首发在我的博客园：[http://www.cnblogs.com/yuanlong1012/p/5127497.html](http://www.cnblogs.com/yuanlong1012/p/5127497.html)

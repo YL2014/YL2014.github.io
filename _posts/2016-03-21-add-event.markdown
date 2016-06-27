@@ -3,7 +3,7 @@ layout: post
 title:  "addEvent和removeEvent"
 date:   2016-03-21 00:00
 categories: js
-permalink: /archivers/20160321/add-event
+permalink: /archivers/20160321/add-event.html
 ---
 
 最近在看`《精通JavaScript》`这本书，感觉还不错，这里记录下里面的事件监听与移除的方法，以备日后开发时参考。

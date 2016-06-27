@@ -3,7 +3,7 @@ layout: post
 title:  "关于javascript函数声明提升和变量声明提升"
 date:   2016-03-12 00:01
 categories: js
-permalink: /archivers/20160312/define-upgrade
+permalink: /archivers/20160312/define-upgrade.html
 ---
 
 一直知道javascript变量和函数都会在自己的作用于内声明提升，但是当变量名和函数名相同时，谁会覆盖谁呢？

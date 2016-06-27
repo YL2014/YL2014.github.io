@@ -3,7 +3,7 @@ layout: post
 title:  "chrome使用技巧之snippets"
 date:   2016-03-06 00:16
 categories: chrome
-permalink: /archivers/20160306/chrome-snippets
+permalink: /archivers/20160306/chrome-snippets.html
 ---
 
 在平时开发中，使用的最多的工具应该是chrome了(前端而言)，chrome有很多使用技巧，下面我们要聊的正是`snippets`,个人认为比控制台的`console`好用(也只是在某些场景下面)。

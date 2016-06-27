@@ -3,7 +3,7 @@ layout: post
 title:  "ubuntu上搭建ftp服务器"
 date:   2016-06-13 00:00
 categories: linux ecs
-permalink: /archivers/20160613/ubuntu-ftp
+permalink: /archivers/20160613/ubuntu-ftp.html
 ---
 
 买阿里云的ECS有段时间了，也折腾了一段时间，过段时间写一写折腾的一些东东。昨天有个想法，服务器上已经搭建了一些东西，如果需要合作开发，必然需要给团队的开发人员服务器的账号和密码。但是这里涉及到一个权限问题，比如，当某个项目的前端开发人员只需要将前端代码上传到服务器，就没必要给服务器的所有权限。脑海中第一反应就是ftp了，刚使用ECS也是用ftp来管理文件的。当然，jekins的自动化部署也能解决这样的需求，这个以后有时间在写一篇。

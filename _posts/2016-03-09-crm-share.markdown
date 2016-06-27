@@ -3,7 +3,7 @@ layout: post
 title:  "CRM前端架构分享"
 date:   2016-03-08 00:00
 categories: other
-permalink: /archivers/20160308/crm-share
+permalink: /archivers/20160308/crm-share.html
 ---
 
 # crm-app
