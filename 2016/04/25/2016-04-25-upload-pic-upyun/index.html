@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yl.front-js.cc">
+  <title>FormData API 上传文件到又拍云 | YL&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近又遇到了上传文件的需求，以前也写过一篇关于利用formdata上传文件的文章(如需浏览，请点击这里)，这次上传的地址是又拍云，在操作过程中稍微遇到了一些坑，这里简单记录下。
+这里使用的是又拍云的HTTP FORM API，使用流程大概如下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FormData API 上传文件到又拍云">
+<meta property="og:url" content="http://yl.front-js.cc/2016/04/25/2016-04-25-upload-pic-upyun/index.html">
+<meta property="og:site_name" content="YL's Blog">
+<meta property="og:description" content="最近又遇到了上传文件的需求，以前也写过一篇关于利用formdata上传文件的文章(如需浏览，请点击这里)，这次上传的地址是又拍云，在操作过程中稍微遇到了一些坑，这里简单记录下。
+这里使用的是又拍云的HTTP FORM API，使用流程大概如下">
+<meta property="og:updated_time" content="2016-12-09T10:10:29.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FormData API 上传文件到又拍云">
+<meta name="twitter:description" content="最近又遇到了上传文件的需求，以前也写过一篇关于利用formdata上传文件的文章(如需浏览，请点击这里)，这次上传的地址是又拍云，在操作过程中稍微遇到了一些坑，这里简单记录下。
+这里使用的是又拍云的HTTP FORM API，使用流程大概如下">
+  
+    <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">YuanLong</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">YuanLong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">YuanLong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-2016-04-25-upload-pic-upyun" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      FormData API 上传文件到又拍云
+    </h1>
+  
+
+        <a href="/2016/04/25/2016-04-25-upload-pic-upyun/" class="archive-article-date">
+  	<time datetime="2016-04-25T09:39:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近又遇到了上传文件的需求，以前也写过一篇关于利用formdata上传文件的文章(如需浏览，请点击<a href="http://yl2014.github.io/archivers/20160308/async-js-file-upload" target="_blank" rel="external">这里</a>)，<br>这次上传的地址是又拍云，在操作过程中稍微遇到了一些坑，这里简单记录下。</p>
+<p>这里使用的是又拍云的<a href="http://docs.upyun.com/api/form_api/" target="_blank" rel="external">HTTP FORM API</a>，使用流程大概如下</p>
+<a id="more"></a>
+<ol>
+<li><p>请求客户服务器，生成、获取上传所需的 signature、policy 参数。为了提升上传成功率（避免签名过期）、安全性(设置尽可能短的授权有效期)，我们建议在每次执行上传操作之前，都重新执行本步骤获取相关参数；</p>
+</li>
+<li><p>请求 UPYUN API 上传文件，校验返回结果/异步回调通知客户服务器；</p>
+</li>
+<li><p>处理常规客户业务流程。</p>
+</li>
+</ol>
+<p>没错，我们首先要获取上传到又拍云所需要的字段，这个由自己的服务端返回，然后将这两个参数和文件参数一起请求又拍云的api接口即可，如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">Utils.ajaxGet(<span class="string">'/upload/sign'</span>,&#123;<span class="attr">mod</span>: <span class="string">'serverSite'</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="comment">/*data &#123;"signature":xxx, "policy":xxxx&#125;*/</span></div><div class="line">    upload(data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> file,</div><div class="line">        fd = <span class="keyword">new</span> FormData(),</div><div class="line">        xhr = <span class="keyword">new</span> XMLHttpRequest(),</div><div class="line">        loaded, total, pre, url, input;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">document</span>.getElementById(<span class="string">'myUploadInput'</span>))&#123;</div><div class="line">        input = <span class="built_in">document</span>.getElementById(<span class="string">'myUploadInput'</span>);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">        input.setAttribute(<span class="string">'id'</span>, <span class="string">'myUploadInput'</span>);</div><div class="line">        input.setAttribute(<span class="string">'type'</span>, <span class="string">'file'</span>);</div><div class="line">        input.setAttribute(<span class="string">'name'</span>, <span class="string">'file'</span>);</div><div class="line">        <span class="built_in">document</span>.body.appendChild(input);</div><div class="line">        input.style.display = <span class="string">'none'</span>;</div><div class="line">    &#125;</div><div class="line">    url = <span class="string">'http://v0.api.upyun.com/xxx'</span>;</div><div class="line"></div><div class="line">    input.click();</div><div class="line">    input.onchange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        file = input.files[<span class="number">0</span>];</div><div class="line">        fd.append(<span class="string">'signature'</span>, data.signature);</div><div class="line">        fd.append(<span class="string">'policy'</span>, data.policy);</div><div class="line">        fd.append(<span class="string">'file'</span>, file);</div><div class="line">        xhr.open(<span class="string">'post'</span>, url);</div><div class="line">        xhr.send(fd);</div><div class="line">        xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(xhr);</div><div class="line">            <span class="keyword">if</span>(xhr.status == <span class="number">200</span>)&#123;</div><div class="line">                <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>)&#123;</div><div class="line">                    <span class="keyword">if</span>(option.callback <span class="keyword">instanceof</span> <span class="built_in">Function</span>)&#123;</div><div class="line">                        <span class="built_in">console</span>.log(xhr.responseText);</div><div class="line">                        <span class="keyword">if</span>(<span class="keyword">typeof</span> xhr.responseText == <span class="string">'string'</span>)&#123;</div><div class="line">                            option.callback(<span class="built_in">JSON</span>.parse(xhr.responseText))</div><div class="line">                        &#125;<span class="keyword">else</span>&#123;</div><div class="line">                            option.callback(xhr.responseText);</div><div class="line">                        &#125;</div><div class="line">                        xhr = <span class="literal">null</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                Utils.showTips(<span class="string">'上传失败'</span>)</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        xhr.upload.onprogress = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">            loaded = event.loaded;</div><div class="line">            total = event.total;</div><div class="line">            pre = <span class="built_in">Math</span>.floor(<span class="number">100</span> * loaded / total);</div><div class="line">            <span class="keyword">if</span>(option.uploading <span class="keyword">instanceof</span> <span class="built_in">Function</span>)&#123;</div><div class="line">                option.uploading(pre);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码中<code>url</code>中的<code>xxx</code>，是又拍云配置里的<code>bucket-name</code>，具体的可以查看又拍云的相关api文档。</p>
+<p>一切看似很正常，我开始也是这么觉得的，然后，bug发生了。当我们在页面上点击按钮调用上述方法的时候，发现什么也没有发生，按常理应该会打开本地的资源管理器的。<br>然后在控制台看看，发现只向自己的服务端发送了请求，创建的表单元素的<code>change</code>事件没有发生，这个断点可以看到。</p>
+<p>为什么<code>change</code>没有发生？初步猜测，ajax发起的网络请求会阻塞或者影响浏览器UI层的渲染，然后谷歌查阅相关资料，也找到了相关的解释。</p>
+<p><a href="http://greengerong.com/blog/2015/10/27/javascript-single-thread-and-browser-event-loop/" target="_blank" rel="external">资料一</a></p>
+<p><a href="http://www.cnblogs.com/lvdabao/p/3744030.html" target="_blank" rel="external">资料二</a></p>
+<p>既然找到了原因，解决办法也很明显了，如果使用的jQuery的ajax，可以尝试上述资料里的方法，我这里偷了个懒，从服务端获取signature、policy的方法放到了表单元素的<code>change</code>事件里。</p>
+<p>代码如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line">Utils.uploadFile = <span class="function"><span class="keyword">function</span> (<span class="params">option</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> file,</div><div class="line">        fd = <span class="keyword">new</span> FormData(),</div><div class="line">        xhr = <span class="keyword">new</span> XMLHttpRequest(),</div><div class="line">        loaded, total, pre, url, input;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">document</span>.getElementById(<span class="string">'myUploadInput'</span>))&#123;</div><div class="line">        input = <span class="built_in">document</span>.getElementById(<span class="string">'myUploadInput'</span>);</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">        input.setAttribute(<span class="string">'id'</span>, <span class="string">'myUploadInput'</span>);</div><div class="line">        input.setAttribute(<span class="string">'type'</span>, <span class="string">'file'</span>);</div><div class="line">        input.setAttribute(<span class="string">'name'</span>, <span class="string">'file'</span>);</div><div class="line">        <span class="built_in">document</span>.body.appendChild(input);</div><div class="line">        input.style.display = <span class="string">'none'</span>;</div><div class="line">    &#125;</div><div class="line">    url = <span class="string">'http://v0.api.upyun.com/xxx'</span>;</div><div class="line"></div><div class="line">    input.click();</div><div class="line"></div><div class="line">    input.onchange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> fileType = [<span class="string">'gif'</span>,<span class="string">'png'</span>,<span class="string">'jpg'</span>,<span class="string">'jpge'</span>];</div><div class="line">        <span class="keyword">var</span> type = input.value.split(<span class="string">'.'</span>).pop();</div><div class="line">        <span class="keyword">if</span>(fileType.indexOf(type.toLocaleLowerCase()) == <span class="number">-1</span>)&#123;</div><div class="line">            Utils.showTips(<span class="string">'该类型文件不支持，请选择图片文件'</span>);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(option.maxSize &amp;&amp;  input.files[<span class="number">0</span>].size &gt; option.maxSize * <span class="number">1024</span> * <span class="number">1024</span>)&#123;</div><div class="line">            Utils.showTips(<span class="string">'请上传小于'</span>+option.maxSize+<span class="string">'M的文件'</span>);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(option.beforeSend <span class="keyword">instanceof</span> <span class="built_in">Function</span>)&#123;</div><div class="line">            <span class="keyword">if</span>(option.beforeSend(file) === <span class="literal">false</span>)&#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        Utils.ajaxGet(<span class="string">'/upload/sign'</span>,&#123;<span class="attr">mod</span>: <span class="string">'serverSite'</span>&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            file = input.files[<span class="number">0</span>];</div><div class="line">            fd.append(<span class="string">'signature'</span>, data.signature);</div><div class="line">            fd.append(<span class="string">'policy'</span>, data.policy);</div><div class="line">            fd.append(<span class="string">'file'</span>, file);</div><div class="line">            xhr.open(<span class="string">'post'</span>, url);</div><div class="line">            xhr.send(fd);</div><div class="line">            xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(xhr);</div><div class="line">                <span class="keyword">if</span>(xhr.status == <span class="number">200</span>)&#123;</div><div class="line">                    <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>)&#123;</div><div class="line">                        <span class="keyword">if</span>(option.callback <span class="keyword">instanceof</span> <span class="built_in">Function</span>)&#123;</div><div class="line">                            <span class="built_in">console</span>.log(xhr.responseText);</div><div class="line">                            <span class="keyword">if</span>(<span class="keyword">typeof</span> xhr.responseText == <span class="string">'string'</span>)&#123;</div><div class="line">                                option.callback(<span class="built_in">JSON</span>.parse(xhr.responseText))</div><div class="line">                            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                                option.callback(xhr.responseText);</div><div class="line">                            &#125;</div><div class="line">                            xhr = <span class="literal">null</span>;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    Utils.showTips(<span class="string">'上传失败'</span>)</div><div class="line">                &#125;</div><div class="line">            &#125;;</div><div class="line">            xhr.upload.onprogress = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                loaded = event.loaded;</div><div class="line">                total = event.total;</div><div class="line">                pre = <span class="built_in">Math</span>.floor(<span class="number">100</span> * loaded / total);</div><div class="line">                <span class="keyword">if</span>(option.uploading <span class="keyword">instanceof</span> <span class="built_in">Function</span>)&#123;</div><div class="line">                    option.uploading(pre);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这就完了？ 其实并没有，还遇到一个奇葩问题，也就是刚才说的<code>change</code>事件没发生的时候，请求又拍云拿到的<code>xhr.status</code>为<code>0</code>，<br>可能是我孤陋寡闻了，还没听过状态码可以为0。只能说明谷歌很强大，马上就找到相关资料了，因为没有<code>send</code>。最开始的时候，又拍云的请求路径错了也拿到了为0的status，<br>以后遇到类似的情况可以从这几个方面去查找原因了。</p>
+<p>上传文件到又拍云后，又拍云接口的返回参数里有个url，具体的文件访问路径为 <code>&quot;http://xxx.b0.upaiyun.com/&quot;+url</code>，<code>xxx</code>为<code>bucket-name</code>，<br>相关文档可以看<a href="http://docs.upyun.com/guide/#_4" target="_blank" rel="external">这里</a>。</p>
+<p>差不多就这么多了，如有疑问欢迎留言。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/又拍云/">又拍云</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yl.front-js.cc/2016/04/25/2016-04-25-upload-pic-upyun/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/06/13/2016-06-13-ubuntu-ftp/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ubuntu上搭建ftp服务器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/04/11/2016-04-11-wx-use/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">微信jssdk使用记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2016-04-25-upload-pic-upyun" data-title="FormData API 上传文件到又拍云" data-url="http://yl.front-js.cc/2016/04/25/2016-04-25-upload-pic-upyun/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yl2014-github-io"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 YuanLong
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0.js"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jekyll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">chrome</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">snippets</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">crm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">又拍云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ecs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ftp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nodejs</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://aotu.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凹凸实验室</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">搬砖中...</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
