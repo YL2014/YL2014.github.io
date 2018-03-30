@@ -1,13 +1,10 @@
+Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
     stages {
         stage('Install') {
             steps {
                 sh 'npm i'
-                sh '''
-                    hexo g
-
-                '''
             }
         }
         stage('Generate') {
