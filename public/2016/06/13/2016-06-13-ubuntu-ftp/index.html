@@ -9,12 +9,14 @@
   <title>ubuntu上搭建ftp服务器 | YL&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="买阿里云的ECS有段时间了，也折腾了一段时间，过段时间写一写折腾的一些东东。昨天有个想法，服务器上已经搭建了一些东西，如果需要合作开发，必然需要给团队的开发人员服务器的账号和密码。但是这里涉及到一个权限问题，比如，当某个项目的前端开发人员只需要将前端代码上传到服务器，就没必要给服务器的所有权限。脑海中第一反应就是ftp了，刚使用ECS也是用ftp来管理文件的。当然，jekins的自动化部署也能解决">
+<meta name="keywords" content="linux,ecs,ftp,ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ubuntu上搭建ftp服务器">
 <meta property="og:url" content="http://yl.front-js.cc/2016/06/13/2016-06-13-ubuntu-ftp/index.html">
-<meta property="og:site_name" content="YL's Blog">
+<meta property="og:site_name" content="YL&#39;s Blog">
 <meta property="og:description" content="买阿里云的ECS有段时间了，也折腾了一段时间，过段时间写一写折腾的一些东东。昨天有个想法，服务器上已经搭建了一些东西，如果需要合作开发，必然需要给团队的开发人员服务器的账号和密码。但是这里涉及到一个权限问题，比如，当某个项目的前端开发人员只需要将前端代码上传到服务器，就没必要给服务器的所有权限。脑海中第一反应就是ftp了，刚使用ECS也是用ftp来管理文件的。当然，jekins的自动化部署也能解决">
-<meta property="og:updated_time" content="2016-12-09T10:15:57.804Z">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-30T08:44:43.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ubuntu上搭建ftp服务器">
 <meta name="twitter:description" content="买阿里云的ECS有段时间了，也折腾了一段时间，过段时间写一写折腾的一些东东。昨天有个想法，服务器上已经搭建了一些东西，如果需要合作开发，必然需要给团队的开发人员服务器的账号和密码。但是这里涉及到一个权限问题，比如，当某个项目的前端开发人员只需要将前端代码上传到服务器，就没必要给服务器的所有权限。脑海中第一反应就是ftp了，刚使用ECS也是用ftp来管理文件的。当然，jekins的自动化部署也能解决">
@@ -24,7 +26,7 @@
   
     <link rel="icon" href="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
 </head>
@@ -145,23 +147,23 @@
       
         <p>买阿里云的ECS有段时间了，也折腾了一段时间，过段时间写一写折腾的一些东东。昨天有个想法，服务器上已经搭建了一些东西，如果需要合作开发，必然需要给团队的开发人员服务器的账号和密码。但是这里涉及到一个权限问题，比如，当某个项目的前端开发人员只需要将前端代码上传到服务器，就没必要给服务器的所有权限。脑海中第一反应就是ftp了，刚使用ECS也是用ftp来管理文件的。当然，jekins的自动化部署也能解决这样的需求，这个以后有时间在写一篇。</p>
 <a id="more"></a>
-<p>在网上找了一些资料，以及查阅ECS的官方文档，也确实找到了我想要的东西，例如这个<br><a href="https://help.aliyun.com/knowledge_detail/5973912.html" target="_blank" rel="external">Linux下如何进行FTP设置</a>，还有这个<a href="https://help.aliyun.com/knowledge_detail/5990158.html?spm=5176.788314853.2.1.mVyePK" target="_blank" rel="external">ECS Linux配置vsftpd限制FTP账户访问其它目录</a>。</p>
+<p>在网上找了一些资料，以及查阅ECS的官方文档，也确实找到了我想要的东西，例如这个<br><a href="https://help.aliyun.com/knowledge_detail/5973912.html" target="_blank" rel="noopener">Linux下如何进行FTP设置</a>，还有这个<a href="https://help.aliyun.com/knowledge_detail/5990158.html?spm=5176.788314853.2.1.mVyePK" target="_blank" rel="noopener">ECS Linux配置vsftpd限制FTP账户访问其它目录</a>。</p>
 <p>看完这两篇文章，发现没什么好写的，只剩下实践了。所以我打算在本地先测试一遍，如果没问题，然后就在ECS上去添加ftp用户，并设置访问权限，下面开始实践。</p>
 <p>按照刚才给出的第一份文档，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">root@yl:/# apt-get install vsftpd -y</div><div class="line">root@yl:/# useradd -d /usr/yl -m -s /usr/sbin/nologin test</div><div class="line">root@yl:/# passwd test</div><div class="line">输入新的 UNIX 密码： </div><div class="line">重新输入新的 UNIX 密码： </div><div class="line">passwd：已成功更新密码</div><div class="line">root@yl:/# chown -R test.test /usr/yl</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/# apt-get install vsftpd -y</span><br><span class="line">root@yl:/# useradd -d /usr/yl -m -s /usr/sbin/nologin test</span><br><span class="line">root@yl:/# passwd test</span><br><span class="line">输入新的 UNIX 密码： </span><br><span class="line">重新输入新的 UNIX 密码： </span><br><span class="line">passwd：已成功更新密码</span><br><span class="line">root@yl:/# chown -R test.test /usr/yl</span><br></pre></td></tr></table></figure>
 <p>然后就是修改vsftpd.conf和shells文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">root@yl:/# vim /etc/vsftpd.conf</div><div class="line">root@yl:/# vim /etc/shells</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/# vim /etc/vsftpd.conf</span><br><span class="line">root@yl:/# vim /etc/shells</span><br></pre></td></tr></table></figure>
 <p>shells文件的修改，在文件后面加上<code>/usr/sbin/nologin</code>，vsftpd.conf的关键修改如下，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">chroot_local_user=YES</div><div class="line">chroot_list_enable=YES</div><div class="line"># (default follows)</div><div class="line">chroot_list_file=/etc/vsftpd.chroot_list</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chroot_local_user=YES</span><br><span class="line">chroot_list_enable=YES</span><br><span class="line"># (default follows)</span><br><span class="line">chroot_list_file=/etc/vsftpd.chroot_list</span><br></pre></td></tr></table></figure>
 <p>这里简单说明下(来源于网络)：<br>chroot_local_user=YES       #是否将所有用户锁定在主目录,YES为启用 NO禁用.(包括注释掉也为禁用)<br>chroot_list_enable=YES     #是否启动锁定用户的名单 YES为启用  NO禁用(包括注释掉也为禁用)<br>chroot_list_file=/etc/vsftpd.chroot_list     #禁用的列表名单  格式为一行一个用户, 如果名单里面有一个ftpuser的用户, 则ftpuser用户不会锁定在主目录,用户将可以自由切换目录.</p>
 <p>然后重启ftp服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root@yl:/# service vsftpd restart</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/# service vsftpd restart</span><br></pre></td></tr></table></figure>
 <p>尝试连接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">root@yl:/usr# ftp 127.0.0.1</div><div class="line">Connected to 127.0.0.1.</div><div class="line">220 (vsFTPd 3.0.2)</div><div class="line">Name (127.0.0.1:yl): test</div><div class="line">331 Please specify the password.</div><div class="line">Password:</div><div class="line">500 OOPS: vsftpd: refusing to run with writable root inside chroot()</div><div class="line">Login failed.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/usr# ftp 127.0.0.1</span><br><span class="line">Connected to 127.0.0.1.</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line">Name (127.0.0.1:yl): test</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">500 OOPS: vsftpd: refusing to run with writable root inside chroot()</span><br><span class="line">Login failed.</span><br></pre></td></tr></table></figure>
 <p>好吧，看到报500了，哈哈。针对这个问题，chrome了一番，得到的答案是最新的vsftp对受限用户的主目录不能设置writable权限。那么问题来了，我们创建用户并只允许其访问自己的主目录，这里又不能给他可写的权限，好像矛盾了。没错，确实矛盾了。既然官方说了不能给主目录可写权限，那么我们可以给他的子目录可写的权限，用户在子目录里进行对应的操作就可以了，如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">root@yl:/# chmod a-w /usr/yl</div><div class="line">root@yl:/# cd /usr/yl</div><div class="line">root@yl:/usr/yl# mkdir www</div><div class="line">root@yl:/usr/yl# ls</div><div class="line">www</div><div class="line">root@yl:/usr/yl# chmod 777 www</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/# chmod a-w /usr/yl</span><br><span class="line">root@yl:/# cd /usr/yl</span><br><span class="line">root@yl:/usr/yl# mkdir www</span><br><span class="line">root@yl:/usr/yl# ls</span><br><span class="line">www</span><br><span class="line">root@yl:/usr/yl# chmod 777 www</span><br></pre></td></tr></table></figure>
 <p>我们再来连接试试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">root@yl:/usr# ftp 127.0.0.1</div><div class="line">Connected to 127.0.0.1.</div><div class="line">220 (vsFTPd 3.0.2)</div><div class="line">Name (127.0.0.1:yl): test</div><div class="line">331 Please specify the password.</div><div class="line">Password:</div><div class="line">230 Login successful.</div><div class="line">Remote system type is UNIX.</div><div class="line">Using binary mode to transfer files.</div><div class="line">ftp&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/usr# ftp 127.0.0.1</span><br><span class="line">Connected to 127.0.0.1.</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line">Name (127.0.0.1:yl): test</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line">ftp&gt;</span><br></pre></td></tr></table></figure>
 <p>连接成功！</p>
 <p>然后我使用xftp在windows里使用刚才新建的账号连接虚拟机里的服务器也正常连接了，并且只能访问自己的主目录，不能跳出当前目录，权限也跟刚才设置的一样，只能在子目录里上传文档。剩下的就是把这些操作在ECS上copy一次了，如果遇到了新的问题会在留言里贴出，如有疑问，欢迎留言。</p>
 
@@ -293,7 +295,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 YuanLong
+    		&copy; 2018 YuanLong
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -316,7 +318,7 @@
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
     
@@ -394,6 +396,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">let's encrype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">https</a>
               </li>
             
             <div class="clearfix"></div>

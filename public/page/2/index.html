@@ -9,18 +9,19 @@
   <title>YL&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="YL's Blog">
+<meta property="og:title" content="YL&#39;s Blog">
 <meta property="og:url" content="http://yl.front-js.cc/page/2/index.html">
-<meta property="og:site_name" content="YL's Blog">
+<meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YL's Blog">
+<meta name="twitter:title" content="YL&#39;s Blog">
   
     <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
 </head>
@@ -122,6 +123,60 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-2016-03-21-add-event" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/21/2016-03-21-add-event/">addEvent和removeEvent</a>
+    </h1>
+  
+
+        <a href="/2016/03/21/2016-03-21-add-event/" class="archive-article-date">
+  	<time datetime="2016-03-21T09:38:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-21</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在看<code>《精通JavaScript》</code>这本书，感觉还不错，这里记录下里面的事件监听与移除的方法，以备日后开发时参考。</p>
+        <a class="article-more-a"  href="/2016/03/21/2016-03-21-add-event/#more">more >></a>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/03/21/2016-03-21-add-event/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
   
     <article id="post-2016-03-14-note-ssd" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -253,7 +308,7 @@
         <h1 id="crm-app"><a href="#crm-app" class="headerlink" title="crm-app"></a>crm-app</h1><ul>
 <li>开发工具：hbuilder</li>
 <li>使用的技术：mui  arttemplate.js  h5+  native.js</li>
-<li><a href="http://ask.dcloud.net.cn/docs">参考文档</a></li>
+<li><a href="http://ask.dcloud.net.cn/docs" target="_blank" rel="noopener">参考文档</a></li>
 </ul>
 <h3 id="详细讲解"><a href="#详细讲解" class="headerlink" title="详细讲解"></a>详细讲解</h3>
         <a class="article-more-a"  href="/2016/03/09/2016-03-09-crm-share/#more">more >></a>
@@ -310,9 +365,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>本文首发在我的博客园：<a href="http://www.cnblogs.com/yuanlong1012/p/5127497.html">http://www.cnblogs.com/yuanlong1012/p/5127497.html</a></p>
+<p>本文首发在我的博客园：<a href="http://www.cnblogs.com/yuanlong1012/p/5127497.html" target="_blank" rel="noopener">http://www.cnblogs.com/yuanlong1012/p/5127497.html</a></p>
 </blockquote>
-<p>最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要异步上传文件。<br>　　在网上扒了扒相关的内容，发现还真不少，阮一峰老师的这篇文章<a href="http://www.ruanyifeng.com/blog/2012/08/file_upload.html">文件上传的渐进式增强</a>就介绍的很具体，下面就谈谈自己在实战中遇到的一些问题的感受吧。</p>
+<p>最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要异步上传文件。<br>　　在网上扒了扒相关的内容，发现还真不少，阮一峰老师的这篇文章<a href="http://www.ruanyifeng.com/blog/2012/08/file_upload.html" target="_blank" rel="noopener">文件上传的渐进式增强</a>就介绍的很具体，下面就谈谈自己在实战中遇到的一些问题的感受吧。</p>
         <a class="article-more-a"  href="/2016/03/08/2016-03-08-file-upload/#more">more >></a>
       
 
@@ -348,60 +403,6 @@
 
 
   
-    <article id="post-2016-03-06-chrome-tip-snippets" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/06/2016-03-06-chrome-tip-snippets/">chrome使用技巧之snippets</a>
-    </h1>
-  
-
-        <a href="/2016/03/06/2016-03-06-chrome-tip-snippets/" class="archive-article-date">
-  	<time datetime="2016-03-06T09:36:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-06</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在平时开发中，使用的最多的工具应该是chrome了(前端而言)，chrome有很多使用技巧，下面我们要聊的正是<code>snippets</code>,个人认为比控制台的<code>console</code>好用(也只是在某些场景下面)。</p>
-        <a class="article-more-a"  href="/2016/03/06/2016-03-06-chrome-tip-snippets/#more">more >></a>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/snippets/">snippets</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/06/2016-03-06-chrome-tip-snippets/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -416,7 +417,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 YuanLong
+    		&copy; 2018 YuanLong
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -439,7 +440,7 @@
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
     
@@ -517,6 +518,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">let's encrype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">https</a>
               </li>
             
             <div class="clearfix"></div>

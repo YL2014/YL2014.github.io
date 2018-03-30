@@ -8,26 +8,25 @@
   <link rel="dns-prefetch" href="http://yl.front-js.cc">
   <title>ECS上nodejs升级(7.2.0)记录 | YL&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="卸载如果之前是通过 apt-get install nodejs npm安装的，直接执行 apt-get remove nodejs npm -y卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载https://hungred.com/how-to/completely-removing-nodejs-npm/
-安装">
+  <meta name="description" content="卸载如果之前是通过 apt-get install nodejs npm安装的，直接执行 apt-get remove nodejs npm -y卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载https://hungred.com/how-to/completely-removing-nodejs-npm/ 安装">
+<meta name="keywords" content="ecs,ubuntu,nodejs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ECS上nodejs升级(7.2.0)记录">
 <meta property="og:url" content="http://yl.front-js.cc/2016/12/08/2016-12-08-ecs-nodejs/index.html">
-<meta property="og:site_name" content="YL's Blog">
-<meta property="og:description" content="卸载如果之前是通过 apt-get install nodejs npm安装的，直接执行 apt-get remove nodejs npm -y卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载https://hungred.com/how-to/completely-removing-nodejs-npm/
-安装">
-<meta property="og:updated_time" content="2016-12-09T10:15:36.861Z">
+<meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:description" content="卸载如果之前是通过 apt-get install nodejs npm安装的，直接执行 apt-get remove nodejs npm -y卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载https://hungred.com/how-to/completely-removing-nodejs-npm/ 安装">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-03-30T08:44:43.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ECS上nodejs升级(7.2.0)记录">
-<meta name="twitter:description" content="卸载如果之前是通过 apt-get install nodejs npm安装的，直接执行 apt-get remove nodejs npm -y卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载https://hungred.com/how-to/completely-removing-nodejs-npm/
-安装">
+<meta name="twitter:description" content="卸载如果之前是通过 apt-get install nodejs npm安装的，直接执行 apt-get remove nodejs npm -y卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载https://hungred.com/how-to/completely-removing-nodejs-npm/ 安装">
   
     <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
   
   
     <link rel="icon" href="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png">
   
-  <link rel="stylesheet" href="/main.css?v=4.0.0.css">
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
   
 
 </head>
@@ -146,17 +145,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h5><p>如果之前是通过 <code>apt-get install nodejs npm</code>安装的，直接执行 <code>apt-get remove nodejs npm -y</code>卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载<a href="https://hungred.com/how-to/completely-removing-nodejs-npm/" target="_blank" rel="external">https://hungred.com/how-to/completely-removing-nodejs-npm/</a></p>
+        <h5 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h5><p>如果之前是通过 <code>apt-get install nodejs npm</code>安装的，直接执行 <code>apt-get remove nodejs npm -y</code>卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载<a href="https://hungred.com/how-to/completely-removing-nodejs-npm/" target="_blank" rel="noopener">https://hungred.com/how-to/completely-removing-nodejs-npm/</a></p>
 <h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -</div><div class="line">sudo apt-get install -y nodejs</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>参考：<a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions" target="_blank" rel="external">https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions</a></p>
+<p>参考：<a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions" target="_blank" rel="noopener">https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions</a></p>
 </blockquote>
-<h6 id="是否成功？"><a href="#是否成功？" class="headerlink" title="是否成功？"></a>是否成功？</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">root@yl:/etc# node -v</div><div class="line">-bash: /usr/local/bin/node: No such file or directory</div><div class="line">root@yl:/etc# npm -v</div><div class="line">-bash: /usr/local/bin/npm: No such file or directory</div></pre></td></tr></table></figure>
+<h6 id="是否成功？"><a href="#是否成功？" class="headerlink" title="是否成功？"></a>是否成功？</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/etc# node -v</span><br><span class="line">-bash: /usr/local/bin/node: No such file or directory</span><br><span class="line">root@yl:/etc# npm -v</span><br><span class="line">-bash: /usr/local/bin/npm: No such file or directory</span><br></pre></td></tr></table></figure>
 <p>很明显没成功(注：在真实的ubuntu里，已经成功了，这个是ECS上显示了)</p>
-<h5 id="看看node装在哪了"><a href="#看看node装在哪了" class="headerlink" title="看看node装在哪了"></a>看看node装在哪了</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">root@yl:/etc# which node</div><div class="line">/usr/bin/node</div><div class="line">root@yl:/etc# which npm</div><div class="line">/usr/bin/npm</div></pre></td></tr></table></figure>
+<h5 id="看看node装在哪了"><a href="#看看node装在哪了" class="headerlink" title="看看node装在哪了"></a>看看node装在哪了</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/etc# which node</span><br><span class="line">/usr/bin/node</span><br><span class="line">root@yl:/etc# which npm</span><br><span class="line">/usr/bin/npm</span><br></pre></td></tr></table></figure>
 <p>可以看到，其实是安装成功了，只是命令的对应目录不对，这就好办了</p>
-<h5 id="软链"><a href="#软链" class="headerlink" title="软链"></a>软链</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">root@yl:/etc# ln -s /usr/bin/nodejs /usr/local/bin/node</div><div class="line">root@yl:/etc# node -v</div><div class="line">v7.2.0</div><div class="line">root@yl:/etc# ln -s /usr/bin/npm /usr/local/bin/npm</div><div class="line">root@yl:/etc# npm -v</div><div class="line">3.10.9</div></pre></td></tr></table></figure>
+<h5 id="软链"><a href="#软链" class="headerlink" title="软链"></a>软链</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">root@yl:/etc# ln -s /usr/bin/nodejs /usr/local/bin/node</span><br><span class="line">root@yl:/etc# node -v</span><br><span class="line">v7.2.0</span><br><span class="line">root@yl:/etc# ln -s /usr/bin/npm /usr/local/bin/npm</span><br><span class="line">root@yl:/etc# npm -v</span><br><span class="line">3.10.9</span><br></pre></td></tr></table></figure>
 <p>可以愉快的玩耍了~~</p>
 
       
@@ -235,6 +234,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2018/03/30/2018-03-30-Let's Encrypt https/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Let&#39;s Encrypt 通配符证书配置
+        
+      </div>
+    </a>
+  
   
     <a href="/2016/06/13/2016-06-13-ubuntu-ftp/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">ubuntu上搭建ftp服务器</div>
@@ -278,7 +286,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 YuanLong
+    		&copy; 2018 YuanLong
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -301,7 +309,7 @@
 	}
 </script>
 
-<script src="/./main.js?v=4.0.0.js"></script>
+<script src="/./main.js?v=4.0.0"></script>
 
 
     
@@ -379,6 +387,14 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">let's encrype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">https</a>
               </li>
             
             <div class="clearfix"></div>

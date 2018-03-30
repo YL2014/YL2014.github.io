@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yl.front-js.cc">
-  <title>Archives: 2016/3 | YL&#39;s Blog</title>
+  <title>Let&#39;s Encrypt 通配符证书配置 | YL&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="YL&#39;s Blog">
-<meta property="og:url" content="http://yl.front-js.cc/archives/2016/03/index.html">
+  <meta name="description" content="本文只是对配置过程的记录，如有问题，欢迎留言  环境与依赖">
+<meta name="keywords" content="let&#39;s encrype,https">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let&#39;s Encrypt 通配符证书配置">
+<meta property="og:url" content="http://yl.front-js.cc/2018/03/30/2018-03-30-Let's Encrypt https/index.html">
 <meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:description" content="本文只是对配置过程的记录，如有问题，欢迎留言  环境与依赖">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/34860A24C96A4D97BA0C7E4F53813F74/8813">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/816102C56AF84B6CBF7F29817DB70D64/8818">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/68408B5BE6844EE1A1E007CD6B1F6CF0/8821">
+<meta property="og:updated_time" content="2018-03-30T08:45:05.293Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YL&#39;s Blog">
+<meta name="twitter:title" content="Let&#39;s Encrypt 通配符证书配置">
+<meta name="twitter:description" content="本文只是对配置过程的记录，如有问题，欢迎留言  环境与依赖">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809">
   
     <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
   
@@ -122,186 +132,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-03-30-Let&#39;s Encrypt https" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Let&#39;s Encrypt 通配符证书配置
+    </h1>
+  
+
+        <a href="/2018/03/30/2018-03-30-Let's Encrypt https/" class="archive-article-date">
+  	<time datetime="2018-03-30T08:45:05.292Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-30</time>
+</a>
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文只是对配置过程的记录，如有问题，欢迎留言</p>
+</blockquote>
+<h4 id="环境与依赖"><a href="#环境与依赖" class="headerlink" title="环境与依赖"></a>环境与依赖</h4><a id="more"></a>
+<p>阿里云ECS ubunt16.0.4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install software-properties-common</span><br><span class="line">$ sudo add-apt-repository ppa:certbot/certbot</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install python-certbot-nginx</span><br></pre></td></tr></table></figure></p>
+<h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ certbot -d *.frontjs.cc --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns-01</span><br></pre></td></tr></table></figure>
+<p>按提示操作，注意事项如下：<br><img src="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809" alt=""><br>注意上面做记号的地方，到了这里先不要Enter，先去阿里云上域名解析哪里添加一条解析<br><img src="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/34860A24C96A4D97BA0C7E4F53813F74/8813" alt=""><br>添加完成后，新开一个窗口测试下是否成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dig _acme-challenge.frontjs.cc txt</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/816102C56AF84B6CBF7F29817DB70D64/8818" alt=""><br>如上图所示，表示成功了<br>然后回到安装的窗口，按Enter<br><img src="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/68408B5BE6844EE1A1E007CD6B1F6CF0/8821" alt=""><br>OK，证书生成完成</p>
+<blockquote>
+<p>证书有效期3个月，设置定时任务来更新证书</p>
+<ul>
+<li>编写定时任务脚本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/letsencrypt/live/renew.sh</span><br><span class="line"># 内容：certbot renew --pre-hook &quot;service nginx stop&quot; --post-hook &quot;service nginx start&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>设置定时任务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ crontab -e</span><br><span class="line"># 添加如下内容 0 0 1 * * /etc/letsencrypt/live/renew.sh &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  listen [::]:80;</span><br><span class="line"></span><br><span class="line">  listen 443 ssl;</span><br><span class="line">  # ssl off 支持http和https</span><br><span class="line">  # ssl on;</span><br><span class="line">  ssl_certificate /etc/letsencrypt/live/frontjs.cc/fullchain.pem;</span><br><span class="line">  ssl_certificate_key /etc/letsencrypt/live/frontjs.cc/privkey.pem;</span><br><span class="line"></span><br><span class="line">  server_name frontjs.cc;</span><br><span class="line"></span><br><span class="line">  # 强制https</span><br><span class="line">  # rewrite ^(.*)$  https://$host$1 permanent;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:7000;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启nginx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service nginx restart</span><br></pre></td></tr></table></figure></p>
+<h5 id="enjoy-yourself"><a href="#enjoy-yourself" class="headerlink" title="enjoy yourself!"></a>enjoy yourself!</h5><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://letsencrypt.org/" target="_blank" rel="noopener">https://letsencrypt.org/</a><br><a href="https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx" target="_blank" rel="noopener">https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx</a><br><a href="https://certbot.eff.org/docs/using.html" target="_blank" rel="noopener">https://certbot.eff.org/docs/using.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/21/2016-03-21-add-event/" class="archive-article-date">
-  	<time datetime="2016-03-21T09:38:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/21/2016-03-21-add-event/">addEvent和removeEvent</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/let-s-encrype/">let's encrype</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yl.front-js.cc/2018/03/30/2018-03-30-Let's Encrypt https/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/14/2016-03-14-note-ssd/" class="archive-article-date">
-  	<time datetime="2016-03-14T09:38:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/14/2016-03-14-note-ssd/">宏碁4752g换ssd，光驱位装硬盘(多图慎入)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssd/">ssd</a></li></ul>
-	</div>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/08/2016-12-08-ecs-nodejs/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ECS上nodejs升级(7.2.0)记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/12/2016-03-13-define-upgrade/" class="archive-article-date">
-  	<time datetime="2016-03-12T09:37:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/12/2016-03-13-define-upgrade/">关于javascript函数声明提升和变量声明提升</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/09/2016-03-09-crm-share/" class="archive-article-date">
-  	<time datetime="2016-03-09T09:36:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/09/2016-03-09-crm-share/">CRM前端架构分享</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crm/">crm</a></li></ul>
-	</div>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2018-03-30-Let&#39;s Encrypt https" data-title="Let&#39;s Encrypt 通配符证书配置" data-url="http://yl.front-js.cc/2018/03/30/2018-03-30-Let&#39;s Encrypt https/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yl2014-github-io"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/03/08/2016-03-08-file-upload/" class="archive-article-date">
-  	<time datetime="2016-03-08T09:34:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/03/08/2016-03-08-file-upload/">关于js异步上传文件</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件上传/">文件上传</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2016/03/page/2/">2</a><a class="extend next" rel="next" href="/archives/2016/03/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -324,8 +305,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
