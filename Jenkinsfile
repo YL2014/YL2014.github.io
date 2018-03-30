@@ -15,13 +15,23 @@ pipeline {
                 sh 'hexo g'
             }
         }
-        stage('Copy') {
+        stage('Deploy') {
             steps {
                 sh './deploy.sh'
             }
         }
+        stage('Clean') {
+            steps {
+                sh 'rm -rf /tmp/github/*'
+            }
+        }
     }
     post {
-      
+      success {
+        echo 'success!'
+      }
+      failure {
+        echo 'failed!'
+      }
     }
 }
