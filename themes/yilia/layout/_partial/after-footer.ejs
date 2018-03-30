@@ -1,0 +1,19 @@
+<script>
+	var yiliaConfig = {
+		mathjax: <%=theme.mathjax%>,
+		isHome: <%=is_home()%>,
+		isPost: <%=is_post()%>,
+		isArchive: <%=is_archive()%>,
+		isTag: <%=is_tag()%>,
+		isCategory: <%=is_category()%>,
+		open_in_new: <%=theme.open_in_new%>,
+		root: "<%=config.root%>",
+		innerArchive: <%=theme.smart_menu.innerArchive ? true : false%>
+	}
+</script>
+
+<%- js('./main.js?v=4.0.0') %>
+
+<% if (theme.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
