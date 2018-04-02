@@ -4,6 +4,9 @@ pipeline {
         image 'node:8-alpine'
         args '-p 3000:3000'
       }
+      docker {
+        image 'git:alpine'
+      }
     }
     environment {
       CI = 'true'
