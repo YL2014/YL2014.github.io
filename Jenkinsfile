@@ -1,28 +1,26 @@
 pipeline {
-    agent {
-      docker {
-        image 'node:8-alpine'
-        args '-p 3000:3000'
+  agent {
+    docker {
+      image 'node:8-alpine'
+      args '-p 3000:3000'
+    }
+    
+  }
+  stages {
+    stage('Install') {
+      steps {
+        sh 'npm install -g hexo-cli'
+        sh 'npm install'
       }
     }
-    environment {
-      CI = 'true'
+    stage('Generate') {
+      steps {
+        sh 'hexo g'
+      }
     }
-    stages {
-        stage('Install') {
-            steps {
-                sh 'npm install -g hexo-cli'
-                sh 'npm install'
-            }
-        }
-        stage('Generate') {
-            steps {
-                sh 'hexo g'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh '''
+    stage('Deploy') {
+      steps {
+        sh '''
                   if [ ! -d "$JENKINS_HOME/tmp/github" ]
                     mkdir $JENKINS_HOME/tmp/github
                     chmod -R 777 $JENKINS_HOME/tmp/github
@@ -43,20 +41,27 @@ pipeline {
 
                   git add . && git commit -am "add articles" && git push origin master
                 '''
-            }
-        }
-        stage('Clean') {
-            steps {
-                sh 'rm -rf /tmp/github/*'
-            }
-        }
-    }
-    post {
-      success {
-        echo 'success!'
-      }
-      failure {
-        echo 'failed!'
       }
     }
+    stage('Clean') {
+      steps {
+        sh 'rm -rf $JENKINS_HOME/tmp/github/*'
+      }
+    }
+  }
+  environment {
+    CI = 'true'
+  }
+  post {
+    success {
+      echo 'success!'
+      
+    }
+    
+    failure {
+      echo 'failed!'
+      
+    }
+    
+  }
 }
