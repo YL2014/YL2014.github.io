@@ -22,16 +22,18 @@ pipeline {
       steps {
         sh '''
                   if [ ! -d "$JENKINS_HOME/tmp/github" ]
+                  then
                     mkdir $JENKINS_HOME/tmp/github
                     chmod -R 777 $JENKINS_HOME/tmp/github
-                  then
+                  fi
 
                   cp -R ./public/ $JENKINS_HOME/tmp/github
 
                   if [ ! -d "$JENKINS_HOME/tmp/YL2014.github.io" ]
+                  then
                     git clone git@github.com:YL2014/YL2014.github.io.git
                     chmod -R 777 $JENKINS_HOME/tmp/YL2014.github.io
-                  then
+                  fi
 
                   cd $JENKINS_HOME/tmp/YL2014.github.io
 
