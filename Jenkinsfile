@@ -1,42 +1,42 @@
 pipeline {
-    agent {
-      docker {
-        image 'node:8-alpine'
-        args '-p 3000:3000'
+  agent {
+    docker {
+      image 'node:8-alpine'
+      args '-p 3000:3000'
+    }
+    
+  }
+  stages {
+    stage('Install') {
+      steps {
+        sh 'npm install -g hexo-cli'
+        sh 'npm install'
       }
       docker {
         image 'git:alpine'
       }
     }
-    environment {
-      CI = 'true'
+    stage('Generate') {
+      steps {
+        sh 'hexo g'
+      }
     }
-    stages {
-        stage('Install') {
-            steps {
-                sh 'npm install -g hexo-cli'
-                sh 'npm install'
-            }
-        }
-        stage('Generate') {
-            steps {
-                sh 'hexo g'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh '''
+    stage('Deploy') {
+      steps {
+        sh '''
                   if [ ! -d "$JENKINS_HOME/tmp/github" ]
+                  then
                     mkdir $JENKINS_HOME/tmp/github
                     chmod -R 777 $JENKINS_HOME/tmp/github
-                  then
+                  fi
 
                   cp -R ./public/ $JENKINS_HOME/tmp/github
 
                   if [ ! -d "$JENKINS_HOME/tmp/YL2014.github.io" ]
+                  then
                     git clone git@github.com:YL2014/YL2014.github.io.git
                     chmod -R 777 $JENKINS_HOME/tmp/YL2014.github.io
-                  then
+                  fi
 
                   cd $JENKINS_HOME/tmp/YL2014.github.io
 
@@ -46,20 +46,27 @@ pipeline {
 
                   git add . && git commit -am "add articles" && git push origin master
                 '''
-            }
-        }
-        stage('Clean') {
-            steps {
-                sh 'rm -rf /tmp/github/*'
-            }
-        }
-    }
-    post {
-      success {
-        echo 'success!'
-      }
-      failure {
-        echo 'failed!'
       }
     }
+    stage('Clean') {
+      steps {
+        sh 'rm -rf $JENKINS_HOME/tmp/github/*'
+      }
+    }
+  }
+  environment {
+    CI = 'true'
+  }
+  post {
+    success {
+      echo 'success!'
+      
+    }
+    
+    failure {
+      echo 'failed!'
+      
+    }
+    
+  }
 }
