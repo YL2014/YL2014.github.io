@@ -14,5 +14,6 @@ master分支
 hexo s // 本地预览
 hexo g // 生成public
 hexo d // copy public to .deploy_git and push to github
+hexo d -g // 生成并部署
 ```
 

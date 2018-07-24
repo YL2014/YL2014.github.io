@@ -7,7 +7,7 @@ tags:
 
 #### 背景
 > 新增了一个Github账号，并push过代码，然后用以前的github账号push时，死活push不上去
-
+<!-- more -->
 #### 寻找解决办法
 > 使用ssh key
 

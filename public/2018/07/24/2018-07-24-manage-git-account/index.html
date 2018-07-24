@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yl.frontjs.cc">
-  <title>Tag: ubuntu | YL&#39;s Blog</title>
+  <title>GitHub多账号管理踩坑记录 | YL&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="YL&#39;s Blog">
-<meta property="og:url" content="https://yl.frontjs.cc/tags/ubuntu/index.html">
+  <meta name="description" content="背景 新增了一个Github账号，并push过代码，然后用以前的github账号push时，死活push不上去">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub多账号管理踩坑记录">
+<meta property="og:url" content="https://yl.frontjs.cc/2018/07/24/2018-07-24-manage-git-account/index.html">
 <meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:description" content="背景 新增了一个Github账号，并push过代码，然后用以前的github账号push时，死活push不上去">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-24T12:21:52.599Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YL&#39;s Blog">
+<meta name="twitter:title" content="GitHub多账号管理踩坑记录">
+<meta name="twitter:description" content="背景 新增了一个Github账号，并push过代码，然后用以前的github账号push时，死活push不上去">
   
     <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
   
@@ -122,86 +127,148 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-07-24-manage-git-account" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/08/2016-12-08-ecs-nodejs/" class="archive-article-date">
-  	<time datetime="2016-12-08T09:40:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/08/2016-12-08-ecs-nodejs/">ECS上nodejs升级(7.2.0)记录</a>
+    <h1 class="article-title" itemprop="name">
+      GitHub多账号管理踩坑记录
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ecs/">ecs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/13/2016-06-13-ubuntu-ftp/" class="archive-article-date">
-  	<time datetime="2016-06-13T09:40:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-13</time>
+        <a href="/2018/07/24/2018-07-24-manage-git-account/" class="archive-article-date">
+  	<time datetime="2018-07-24T07:35:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/13/2016-06-13-ubuntu-ftp/">ubuntu上搭建ftp服务器</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><blockquote>
+<p>新增了一个Github账号，并push过代码，然后用以前的github账号push时，死活push不上去<br><a id="more"></a></p>
+</blockquote>
+<h4 id="寻找解决办法"><a href="#寻找解决办法" class="headerlink" title="寻找解决办法"></a>寻找解决办法</h4><blockquote>
+<p>使用ssh key</p>
+</blockquote>
+<p>每个账号对应一个key, Github上填写对应的key（如：<code>id_rsa.github.yl2014.pub</code>文件内容）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"># 生成key文件</span><br><span class="line">ssh-keygen -t rsa -f ~/.ssh/id_rsa.github.yl2014 -C &quot;yl2014@xx.com&quot;</span><br><span class="line">ssh-keygen -t rsa -f ~/.ssh/id_rsa.github.test -C &quot;test@xx.com&quot;</span><br><span class="line"></span><br><span class="line"># 添加key文件</span><br><span class="line">ssh-add ~/.ssh/id_rsa.github.yl2014</span><br><span class="line">ssh-add ~/.ssh/id_rsa.github.test</span><br><span class="line"></span><br><span class="line"># 配置config</span><br><span class="line">vim ~/.ssh/config</span><br><span class="line">Host yl2014</span><br><span class="line">    HostName github.com</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa.github.yl2014</span><br><span class="line">    User git</span><br><span class="line"></span><br><span class="line">Host test</span><br><span class="line">    HostName github.com</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa.github.test</span><br><span class="line">    User git</span><br><span class="line"></span><br><span class="line"># 测试</span><br><span class="line">ssh -T yl2014</span><br><span class="line">&gt; Hi YL2014! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line"></span><br><span class="line">ssh -T test</span><br><span class="line">&gt; Hi test! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line"></span><br><span class="line">ssh -T git@github.com</span><br><span class="line">&gt; Hi YL2014! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br></pre></td></tr></table></figure>
+<p>如果出现 <code>ermission denied (publickey)</code>，则表示key没添加成功，执行<br><code>ssh-add ~/.ssh/id_rsa.github.yl2014</code>，或用debug模式查看具体出错信息<code>ssh -vT git@github.com</code></p>
+<p>如果发现推送时一直是某个GitHub账号，无法切换成另一个，可以采取如下操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 删除所有session，并添加需要认证的</span><br><span class="line">$ ssh-add -D</span><br><span class="line">$ ssh-add id_rsa.github.yl2014</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>参考：<a href="http://www.barretlee.com/blog/2016/03/09/config-in-ssh-after-troubling-git-connection/" target="_blank" rel="noopener">http://www.barretlee.com/blog/2016/03/09/config-in-ssh-after-troubling-git-connection/</a></p>
+</blockquote>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ecs/">ecs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ftp/">ftp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://yl.frontjs.cc/2018/07/24/2018-07-24-manage-git-account/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/03/30/2018-03-30-Let's Encrypt https/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Let&#39;s Encrypt 通配符证书配置</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2018-07-24-manage-git-account" data-title="GitHub多账号管理踩坑记录" data-url="https://yl.frontjs.cc/2018/07/24/2018-07-24-manage-git-account/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yl2014-github-io"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -224,9 +291,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
