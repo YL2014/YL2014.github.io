@@ -1,6 +1,6 @@
 ---
 title: Let's Encrypt 通配符证书配置
-date: 2018-03-30 15:350:31
+date: 2018-03-30 15:35:31
 tags:  
 	- let's encrype
 	- https
@@ -24,7 +24,6 @@ $ sudo apt-get install python-certbot-nginx
 $ certbot -d *.frontjs.cc --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns-01 
 ```
 按提示操作，注意事项如下：
-<!-- ![](https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809) -->
 ![](https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809)
 注意上面做记号的地方，到了这里先不要Enter，先去阿里云上域名解析哪里添加一条解析
 ![](https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/34860A24C96A4D97BA0C7E4F53813F74/8813)
