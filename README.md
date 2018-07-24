@@ -9,3 +9,10 @@
 
 master分支
 
+##### 备忘
+```
+hexo s // 本地预览
+hexo g // 生成public
+hexo d // copy public to .deploy_git and push to github
+```
+
