@@ -15,5 +15,8 @@ hexo s // 本地预览
 hexo g // 生成public
 hexo d // copy public to .deploy_git and push to github
 hexo d -g // 生成并部署
+
+# 如遇到问题，则删除后重新clone
+rm -rf .deploy_git && git clone git@github.com:YL2014/YL2014.github.io.git .deploy_git
 ```
 
