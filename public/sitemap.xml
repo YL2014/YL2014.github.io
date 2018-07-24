@@ -30,13 +30,6 @@
   </url>
   
   <url>
-    <loc>https://yl.frontjs.cc/2016/04/11/2016-04-11-wx-use/</loc>
-    
-    <lastmod>2018-07-24T07:44:25.202Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yl.frontjs.cc/2016/04/25/2016-04-25-upload-pic-upyun/</loc>
     
     <lastmod>2018-07-24T07:44:25.202Z</lastmod>
@@ -44,7 +37,14 @@
   </url>
   
   <url>
-    <loc>https://yl.frontjs.cc/2016/03/21/2016-03-21-add-event/</loc>
+    <loc>https://yl.frontjs.cc/2016/04/11/2016-04-11-wx-use/</loc>
+    
+    <lastmod>2018-07-24T07:44:25.202Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/03/14/2016-03-14-note-ssd/</loc>
     
     <lastmod>2018-07-24T07:44:25.201Z</lastmod>
     
@@ -65,16 +65,9 @@
   </url>
   
   <url>
-    <loc>https://yl.frontjs.cc/2016/03/14/2016-03-14-note-ssd/</loc>
+    <loc>https://yl.frontjs.cc/2016/03/21/2016-03-21-add-event/</loc>
     
     <lastmod>2018-07-24T07:44:25.201Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2016/03/08/2016-03-08-file-upload/</loc>
-    
-    <lastmod>2018-07-24T07:44:25.200Z</lastmod>
     
   </url>
   
@@ -87,6 +80,13 @@
   
   <url>
     <loc>https://yl.frontjs.cc/2016/03/05/2016-03-05-build-jekyll-blog/</loc>
+    
+    <lastmod>2018-07-24T07:44:25.200Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/03/08/2016-03-08-file-upload/</loc>
     
     <lastmod>2018-07-24T07:44:25.200Z</lastmod>
     
