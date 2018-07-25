@@ -103,7 +103,7 @@
 </section>
 <% } %>
 
-<% if (theme.gitalk){ %>
+<% if (!index && theme.gitalk){ %>
   <% post.realPath = post.path.split('/')[3] %>
   <%- partial('post/gitalk', {
     title: post.title,
