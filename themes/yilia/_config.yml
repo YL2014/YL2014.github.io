@@ -49,17 +49,24 @@ weixin:
 
 # Miscellaneous
 google_analytics: ''
-favicon: 'https://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png'
+favicon: 'https://note.youdao.com/yws/public/resource/3adf5b9c8385440285c19e5492d907f3/xmlnote/698833631CF6420CBA443752D4F8923E/9031'
 
 #你的头像url
-avatar: 'https://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png'
+avatar: 'https://note.youdao.com/yws/public/resource/3adf5b9c8385440285c19e5492d907f3/xmlnote/698833631CF6420CBA443752D4F8923E/9031'
 
 #是否开启分享
-share_jia: true
+share_jia: false
 
 #是否开启多说评论，填写你在多说申请的项目名称 duoshuo: duoshuo-key
 #若使用disqus，请在博客config文件中填写disqus_shortname，并关闭多说评论
-duoshuo: yl2014-github-io
+#duoshuo: yl2014-github-io
+
+gitalk:
+  clientID: '372a11e9ce991fcbf79b'
+  clientSecret: 'c4b232bf5ac7503fe141fc3ef2f1229f5f22187d'
+  repo: 'yl2014.github.io'
+  owner: 'yl2014'
+  admin: 'yl2014'
 
 # 智能菜单
 # 如不需要，将该对应项置为false
