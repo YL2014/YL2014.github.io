@@ -49,10 +49,10 @@ weixin:
 
 # Miscellaneous
 google_analytics: ''
-favicon: 'https://note.youdao.com/yws/public/resource/3adf5b9c8385440285c19e5492d907f3/xmlnote/698833631CF6420CBA443752D4F8923E/9031'
+favicon: '/images/avatar.jpeg'
 
 #你的头像url
-avatar: 'https://note.youdao.com/yws/public/resource/3adf5b9c8385440285c19e5492d907f3/xmlnote/698833631CF6420CBA443752D4F8923E/9031'
+avatar: '/images/avatar.jpeg'
 
 #是否开启分享
 share_jia: false
@@ -79,7 +79,7 @@ smart_menu:
   aboutme: '关于我'
 
 friends:
-  凹凸实验室: http://aotu.io/
-  dancdx's blog: http://dancdx.github.io/
+  凹凸实验室: https://aotu.io/
+  dancdx's blog: https://dancdx.github.io/
 
 aboutme: 搬砖中...

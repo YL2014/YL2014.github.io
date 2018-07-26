@@ -8,28 +8,28 @@
   <link rel="dns-prefetch" href="https://yl.frontjs.cc">
   <title>关于js异步上传文件 | YL&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本文首发在我的博客园：http://www.cnblogs.com/yuanlong1012/p/5127497.html  最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要异">
+  <meta name="description" content="本文首发在我的博客园：https://www.cnblogs.com/yuanlong1012/p/5127497.html  最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要">
 <meta name="keywords" content="js,文件上传">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于js异步上传文件">
 <meta property="og:url" content="https://yl.frontjs.cc/2016/03/08/2016-03-08-file-upload/index.html">
 <meta property="og:site_name" content="YL&#39;s Blog">
-<meta property="og:description" content="本文首发在我的博客园：http://www.cnblogs.com/yuanlong1012/p/5127497.html  最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要异">
+<meta property="og:description" content="本文首发在我的博客园：https://www.cnblogs.com/yuanlong1012/p/5127497.html  最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113143715944-686026729.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154319132-891661887.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154331335-1308230912.png">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154343678-1782738937.png">
-<meta property="og:updated_time" content="2018-07-24T07:44:25.200Z">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113143715944-686026729.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154319132-891661887.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154331335-1308230912.png">
+<meta property="og:image" content="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154343678-1782738937.png">
+<meta property="og:updated_time" content="2018-07-26T11:43:38.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于js异步上传文件">
-<meta name="twitter:description" content="本文首发在我的博客园：http://www.cnblogs.com/yuanlong1012/p/5127497.html  最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要异">
-<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113143715944-686026729.png">
+<meta name="twitter:description" content="本文首发在我的博客园：https://www.cnblogs.com/yuanlong1012/p/5127497.html  最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要">
+<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113143715944-686026729.png">
   
     <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
   
   
-    <link rel="icon" href="https://note.youdao.com/yws/public/resource/3adf5b9c8385440285c19e5492d907f3/xmlnote/698833631CF6420CBA443752D4F8923E/9031">
+    <link rel="icon" href="/images/avatar.jpeg">
   
   <link rel="stylesheet" href="/main.css?v=1.0.0">
   
@@ -44,11 +44,11 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://note.youdao.com/yws/public/resource/3adf5b9c8385440285c19e5492d907f3/xmlnote/698833631CF6420CBA443752D4F8923E/9031" class="js-avatar">
+			<img src="/images/avatar.jpeg" class="js-avatar">
 		</a>
 
 		<hgroup>
-		  <h1 class="header-author"><a href="/">YuanLong</a></h1>
+		  <h1 class="header-author"><a href="/">YL2014</a></h1>
 		</hgroup>
 
 		
@@ -94,15 +94,15 @@
       <nav id="mobile-nav">
   	<div class="overlay">
   		<div class="slider-trigger"><i class="icon-sort"></i></div>
-  		<h1 class="header-author js-mobile-header hide">YuanLong</h1>
+  		<h1 class="header-author js-mobile-header hide">YL2014</h1>
   	</div>
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://note.youdao.com/yws/public/resource/3adf5b9c8385440285c19e5492d907f3/xmlnote/698833631CF6420CBA443752D4F8923E/9031" class="js-avatar">
+				<img src="/images/avatar.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author">YuanLong</h1>
+			  <h1 class="header-author">YL2014</h1>
 			</hgroup>
 			
 			<nav class="header-menu">
@@ -151,12 +151,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>本文首发在我的博客园：<a href="http://www.cnblogs.com/yuanlong1012/p/5127497.html" target="_blank" rel="noopener">http://www.cnblogs.com/yuanlong1012/p/5127497.html</a></p>
+<p>本文首发在我的博客园：<a href="https://www.cnblogs.com/yuanlong1012/p/5127497.html" target="_blank" rel="noopener">https://www.cnblogs.com/yuanlong1012/p/5127497.html</a></p>
 </blockquote>
 <p>最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要异步上传文件。<br>　　在网上扒了扒相关的内容，发现还真不少，阮一峰老师的这篇文章<a href="http://www.ruanyifeng.com/blog/2012/08/file_upload.html" target="_blank" rel="noopener">文件上传的渐进式增强</a>就介绍的很具体，下面就谈谈自己在实战中遇到的一些问题的感受吧。</p>
 <a id="more"></a>
 <p>　　先看看效果，实现了哪些功能</p>
-<p><img src="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113143715944-686026729.png" alt="">（好吧，就一个按钮而已，搞得神神秘秘，嘿嘿）</p>
+<p><img src="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113143715944-686026729.png" alt="">（好吧，就一个按钮而已，搞得神神秘秘，嘿嘿）</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">class</span>=<span class="string">"btn"</span> @<span class="attr">click</span>=<span class="string">"upload"</span>&gt;</span>点击上传文件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>给按钮绑定了一个点击事件，下面看看点击事件方法里做了什么</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    upload: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        myUpload(&#123;</span><br><span class="line">            url: <span class="built_in">window</span>.location.protocol + <span class="string">'//'</span> + <span class="built_in">window</span>.location.host + <span class="string">'/crm/upload'</span>,</span><br><span class="line">            maxSize: <span class="number">10</span>,</span><br><span class="line">            beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params">file</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;,</span><br><span class="line">            callback: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">var</span> data = <span class="built_in">JSON</span>.parse(res);</span><br><span class="line">                pageCont.attachmentUrl = data.url;</span><br><span class="line">            &#125;,</span><br><span class="line">            uploading: <span class="function"><span class="keyword">function</span>(<span class="params">pre</span>)</span>&#123;</span><br><span class="line">                pageCont.uploadCont.display = <span class="string">'block'</span>;</span><br><span class="line">                pageCont.uploadStyle.width = pre * <span class="number">2</span> + <span class="string">'px'</span>;</span><br><span class="line">                pageCont.pre = pre;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -185,7 +185,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(xhr.status == <span class="number">200</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(option.callback <span class="keyword">instanceof</span> <span class="built_in">Function</span>)&#123;</span><br><span class="line">        option.callback(xhr.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>问题二：重复创建input。每次点击按钮上传文件后，页面都会多一个type=file的input感觉不是很好（个人癖好吧），所以对最开始的初始化代码做了下优化，判断当前页面是否存在刚才创建的input，存在就直接使用，不存在就创建，如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="built_in">document</span>.getElementById(<span class="string">'myUploadInput'</span>))&#123;</span><br><span class="line">    input = <span class="built_in">document</span>.getElementById(<span class="string">'myUploadInput'</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    input = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</span><br><span class="line">    input.setAttribute(<span class="string">'id'</span>, <span class="string">'myUploadInput'</span>);</span><br><span class="line">    input.setAttribute(<span class="string">'type'</span>, <span class="string">'file'</span>);</span><br><span class="line">    input.setAttribute(<span class="string">'name'</span>, <span class="string">'file'</span>);</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(input);</span><br><span class="line">    input.style.display = <span class="string">'none'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>好了，就这么多了。看看效果<br><img src="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154319132-891661887.png" alt=""><br><img src="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154331335-1308230912.png" alt=""><br><img src="http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154343678-1782738937.png" alt=""></p>
+<p>好了，就这么多了。看看效果<br><img src="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154319132-891661887.png" alt=""><br><img src="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154331335-1308230912.png" alt=""><br><img src="https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154343678-1782738937.png" alt=""></p>
 <p>刚才加了个需求，限制上传文件类型，作了如下修改：</p>
 <ul>
 <li>myUpload方法，初始化时增加了支持文件类型，如下</li>
@@ -274,7 +274,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 YuanLong
+    		&copy; 2018 YL2014
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>
@@ -440,11 +440,11 @@
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://aotu.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凹凸实验室</a>
+              <a href="https://aotu.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凹凸实验室</a>
             </li>
           
             <li class="search-li">
-              <a href="http://dancdx.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>dancdx&#39;s blog</a>
+              <a href="https://dancdx.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>dancdx&#39;s blog</a>
             </li>
           
         </ul>

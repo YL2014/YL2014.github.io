@@ -6,7 +6,7 @@ tags:
 	- 文件上传
 ---
 
-> 本文首发在我的博客园：[http://www.cnblogs.com/yuanlong1012/p/5127497.html](http://www.cnblogs.com/yuanlong1012/p/5127497.html)
+> 本文首发在我的博客园：[https://www.cnblogs.com/yuanlong1012/p/5127497.html](https://www.cnblogs.com/yuanlong1012/p/5127497.html)
 
 最近项目里有个需求，上传文件（好吧，这种需求很常见，这也不是第一次遇到了）。当时第一想法就是直接用form表单提交（原谅我以前就是这么干的），不过表单里不仅有文件还有别的信息需要交互，跟后端商量后决定文件单独上传，获取到服务器端返回的文件地址在和表单一起提交。这里就需要异步上传文件。
 　　在网上扒了扒相关的内容，发现还真不少，阮一峰老师的这篇文章[文件上传的渐进式增强](http://www.ruanyifeng.com/blog/2012/08/file_upload.html)就介绍的很具体，下面就谈谈自己在实战中遇到的一些问题的感受吧。
@@ -15,7 +15,7 @@ tags:
 
 　　先看看效果，实现了哪些功能
 
-![](http://images2015.cnblogs.com/blog/695097/201601/695097-20160113143715944-686026729.png)（好吧，就一个按钮而已，搞得神神秘秘，嘿嘿）
+![](https://images2015.cnblogs.com/blog/695097/201601/695097-20160113143715944-686026729.png)（好吧，就一个按钮而已，搞得神神秘秘，嘿嘿）
 
 ```html
 <button type="button" class="btn" @click="upload">点击上传文件</button>
@@ -221,9 +221,9 @@ if(document.getElementById('myUploadInput')){
 ```
 
 好了，就这么多了。看看效果
-![](http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154319132-891661887.png)
-![](http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154331335-1308230912.png)
-![](http://images2015.cnblogs.com/blog/695097/201601/695097-20160113154343678-1782738937.png)
+![](https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154319132-891661887.png)
+![](https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154331335-1308230912.png)
+![](https://images2015.cnblogs.com/blog/695097/201601/695097-20160113154343678-1782738937.png)
 
 刚才加了个需求，限制上传文件类型，作了如下修改：
 

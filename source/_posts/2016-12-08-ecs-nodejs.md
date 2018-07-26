@@ -7,6 +7,8 @@ tags:
 	- ubuntu
 ---
 
+> 更新：此文作废，用nvm就好了，哪那么多破事...
+
 ##### 卸载
 
 如果之前是通过 `apt-get install nodejs npm`安装的，直接执行 `apt-get remove nodejs npm -y`卸载，若原来是通过源码编译安装的(我之前就是)，参考这个进行卸载[https://hungred.com/how-to/completely-removing-nodejs-npm/](https://hungred.com/how-to/completely-removing-nodejs-npm/)

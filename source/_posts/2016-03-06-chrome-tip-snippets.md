@@ -17,7 +17,7 @@ tags:
 
 这里就要请出我们的`snippets`了。`snippets`在哪？请看下面截图
 
-<img src="http://7xrl5v.com1.z0.glb.clouddn.com/github%2Fio%2Fblog20160306-fetch.jpg" alt="snippets-pic">
+<img src="/images/2016-03-06-1.jpg" alt="snippets-pic">
 
 看了上面的图片，各位看官应该已经了了解了如何使用`snippets`了，在空白区域右键选择`new`可以新建文件，右键刚才新建的文件选择`run`可以运行写的测试代码，断点的方法这里就不多介绍了，相信使用`chrome`开发的朋友都应该很熟了。
 
@@ -25,6 +25,6 @@ tags:
 
 其实chrome的使用技巧还有很多，比如`workspace`，这里顺带提一下，也不单独弄篇文章讨论了。请看下图
 
-<img src="http://7xrl5v.com1.z0.glb.clouddn.com/github%2Fio%2Fblog20160306-chrome-workspace.jpg" alt="workspace-pic">
+<img src="/images/2016-03-06-2.jpg" alt="workspace-pic">
 
 没错，找到地方后，右键就可以看到这个workspace了，这个是干嘛的？这个是把你本地的资源加载到当前站点，说明白点就是“`js`”注入(胡乱取的名字)，具体的就不展开了，有兴趣的同学可以去实践下。

@@ -6,7 +6,7 @@ tags:
 	- 又拍云
 ---
 
-最近又遇到了上传文件的需求，以前也写过一篇关于利用formdata上传文件的文章(如需浏览，请点击[这里](http://yl2014.github.io/archivers/20160308/async-js-file-upload))，
+最近又遇到了上传文件的需求，以前也写过一篇关于利用formdata上传文件的文章(如需浏览，请点击[这里](/2016/03/08/2016-03-08-file-upload))，
 这次上传的地址是又拍云，在操作过程中稍微遇到了一些坑，这里简单记录下。
 
 这里使用的是又拍云的[HTTP FORM API](http://docs.upyun.com/api/form_api/)，使用流程大概如下
