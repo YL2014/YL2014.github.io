@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yl.frontjs.cc/README.html</loc>
-    
-    <lastmod>2018-07-26T11:55:55.811Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yl.frontjs.cc/2016/03/06/2016-03-06-chrome-tip-snippets/</loc>
     
     <lastmod>2018-07-26T11:46:11.459Z</lastmod>
@@ -65,20 +58,6 @@
   </url>
   
   <url>
-    <loc>https://yl.frontjs.cc/2016/03/12/2016-03-13-define-upgrade/</loc>
-    
-    <lastmod>2018-07-24T07:44:25.201Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2016/03/14/2016-03-14-note-ssd/</loc>
-    
-    <lastmod>2018-07-24T07:44:25.201Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://yl.frontjs.cc/2016/03/21/2016-03-21-add-event/</loc>
     
     <lastmod>2018-07-24T07:44:25.201Z</lastmod>
@@ -86,7 +65,21 @@
   </url>
   
   <url>
+    <loc>https://yl.frontjs.cc/2016/03/12/2016-03-13-define-upgrade/</loc>
+    
+    <lastmod>2018-07-24T07:44:25.201Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://yl.frontjs.cc/2016/03/09/2016-03-09-crm-share/</loc>
+    
+    <lastmod>2018-07-24T07:44:25.201Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/03/14/2016-03-14-note-ssd/</loc>
     
     <lastmod>2018-07-24T07:44:25.201Z</lastmod>
     

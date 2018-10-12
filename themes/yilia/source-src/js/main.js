@@ -14,6 +14,8 @@ import Browser from './browser'
 import Mobile from './mobile'
 // 异步脚本
 import { loadScript } from './util'
+// 统计
+// import Cnzz from './cnzz'
 
 window.onload = () => {
 	if(Browser.versions.mobile && window.screen.width < 800){
@@ -23,6 +25,7 @@ window.onload = () => {
 	}
 	Fix.init()
 	Share.init()
-	Viewer.init()
+  Viewer.init()
+  // Cnzz.init()
 }
 
