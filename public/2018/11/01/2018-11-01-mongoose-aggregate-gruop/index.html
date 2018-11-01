@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yl.frontjs.cc">
-  <title>关于javascript函数声明提升和变量声明提升 | YL&#39;s Blog</title>
+  <title>mongoose分组查询记录 | YL&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一直知道javascript变量和函数都会在自己的作用于内声明提升，但是当变量名和函数名相同时，谁会覆盖谁呢？">
-<meta name="keywords" content="js">
+  <meta name="description" content="mongoose聚合分组(aggregate, group)的简单使用记录，直接上代码">
+<meta name="keywords" content="mongoose">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于javascript函数声明提升和变量声明提升">
-<meta property="og:url" content="https://yl.frontjs.cc/2016/03/12/2016-03-13-define-upgrade/index.html">
+<meta property="og:title" content="mongoose分组查询记录">
+<meta property="og:url" content="https://yl.frontjs.cc/2018/11/01/2018-11-01-mongoose-aggregate-gruop/index.html">
 <meta property="og:site_name" content="YL&#39;s Blog">
-<meta property="og:description" content="一直知道javascript变量和函数都会在自己的作用于内声明提升，但是当变量名和函数名相同时，谁会覆盖谁呢？">
+<meta property="og:description" content="mongoose聚合分组(aggregate, group)的简单使用记录，直接上代码">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-24T07:44:25.201Z">
+<meta property="og:updated_time" content="2018-11-01T09:35:57.488Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于javascript函数声明提升和变量声明提升">
-<meta name="twitter:description" content="一直知道javascript变量和函数都会在自己的作用于内声明提升，但是当变量名和函数名相同时，谁会覆盖谁呢？">
+<meta name="twitter:title" content="mongoose分组查询记录">
+<meta name="twitter:description" content="mongoose聚合分组(aggregate, group)的简单使用记录，直接上代码">
   
     <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
   
@@ -132,39 +132,44 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2016-03-13-define-upgrade" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2018-11-01-mongoose-aggregate-gruop" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      关于javascript函数声明提升和变量声明提升
+      mongoose分组查询记录
     </h1>
   
 
-        <a href="/2016/03/12/2016-03-13-define-upgrade/" class="archive-article-date">
-  	<time datetime="2016-03-12T09:37:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-03-12</time>
+        <a href="/2018/11/01/2018-11-01-mongoose-aggregate-gruop/" class="archive-article-date">
+  	<time datetime="2018-11-01T07:35:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-01</time>
 </a>
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一直知道javascript变量和函数都会在自己的作用于内声明提升，但是当变量名和函数名相同时，谁会覆盖谁呢？</p>
+        <p>mongoose聚合分组(aggregate, group)的简单使用记录，直接上代码</p>
 <a id="more"></a>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(a);</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>结果：function a(){}    1</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(a);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>结果：function a(){}    1</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">alert(a);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>结果：function a(){}    function a(){}</p>
-</blockquote>
-<h3 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h3><p>同一个名称标识a，即有变量声明var a，又有函数声明function a() {}，不管二者声明的顺序，函数声明会覆盖变量声明，也就是说，此时a的值是声明的函数function a() {}。如果在变量声明的同时初始化a，或是之后对a进行赋值，此时a的值就是变量的值</p>
+<h4 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># model/report.js</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">&#123; Schema, db &#125;, app</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> Report = <span class="keyword">new</span> Schema(&#123;</span><br><span class="line">    platform: <span class="built_in">String</span>,</span><br><span class="line">    cname: <span class="built_in">String</span>,</span><br><span class="line">    url: <span class="built_in">String</span>,</span><br><span class="line">    floor: <span class="built_in">String</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    timestamps: <span class="literal">true</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> db.model(<span class="string">'Report'</span>, Report, <span class="string">'Report'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="以某个字段分组分组"><a href="#以某个字段分组分组" class="headerlink" title="以某个字段分组分组"></a>以某个字段分组分组</h4><ul>
+<li>aggregate group使用：如果需要分组的字段为<code>cname</code>，那么<code>_id</code>对应的值就为<code>$cname</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dataByDate = <span class="keyword">await</span> <span class="keyword">this</span>.model(<span class="string">'report'</span>).aggregate([</span><br><span class="line">  &#123; <span class="attr">$match</span>: queryCondition &#125;,</span><br><span class="line">  &#123; <span class="attr">$group</span>: &#123;</span><br><span class="line">    _id: <span class="string">'$cname'</span>,</span><br><span class="line">    count: &#123; <span class="attr">$sum</span>: <span class="number">1</span> &#125;</span><br><span class="line">  &#125; &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出结果</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span>: <span class="string">"title2"</span>,</span><br><span class="line">        <span class="string">"count"</span>: <span class="number">22</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span>: <span class="string">"title3"</span>,</span><br><span class="line">        <span class="string">"count"</span>: <span class="number">8</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span>: <span class="string">"title4"</span>,</span><br><span class="line">        <span class="string">"count"</span>: <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h4 id="多个维度"><a href="#多个维度" class="headerlink" title="多个维度"></a>多个维度</h4><p>上面是通过字段<code>cname</code>来分组，如果我们同时想统计每天的每个<code>cname</code>的数量呢？如下，<code>_id</code>里指定两个分组条件，然后使用<code>$project</code>给分组后数据字段重命名，然后继续分组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = <span class="keyword">await</span> <span class="keyword">this</span>.model(<span class="string">'report'</span>).aggregate([</span><br><span class="line">  &#123;</span><br><span class="line">    $match: queryCondition</span><br><span class="line">  &#125;, &#123; <span class="attr">$group</span>: &#123;</span><br><span class="line">    _id: &#123;</span><br><span class="line">      [dimension]: <span class="string">'$'</span> + dimension,</span><br><span class="line">      date: &#123; <span class="attr">$dateToString</span>: &#123; <span class="attr">format</span>: <span class="string">'%Y-%m-%d'</span>, <span class="attr">date</span>: <span class="string">'$createdAt'</span> &#125; &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    count: &#123; <span class="attr">$sum</span>: <span class="number">1</span> &#125;</span><br><span class="line">  &#125; &#125;, &#123;</span><br><span class="line">    $project: &#123;</span><br><span class="line">      _id: <span class="number">0</span>,</span><br><span class="line">      date: <span class="string">'$_id.date'</span>,</span><br><span class="line">      [dimension]: &#123;</span><br><span class="line">        [dimension]: <span class="string">`$_id.<span class="subst">$&#123;dimension&#125;</span>`</span>,</span><br><span class="line">        count: <span class="string">'$count'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    $group: &#123;</span><br><span class="line">      _id: <span class="string">'$date'</span>,</span><br><span class="line">      [dimension]: &#123; <span class="attr">$push</span>: <span class="string">`$<span class="subst">$&#123;dimension&#125;</span>`</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span>: <span class="string">"2018-10-30"</span>,</span><br><span class="line">        <span class="string">"cname"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"cname"</span>: <span class="string">"title4"</span>,</span><br><span class="line">                <span class="string">"count"</span>: <span class="number">2</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">"_id"</span>: <span class="string">"2018-10-31"</span>,</span><br><span class="line">        <span class="string">"cname"</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"cname"</span>: <span class="string">"title4"</span>,</span><br><span class="line">                <span class="string">"count"</span>: <span class="number">8</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"cname"</span>: <span class="string">"title3"</span>,</span><br><span class="line">                <span class="string">"count"</span>: <span class="number">8</span></span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">"cname"</span>: <span class="string">"title2"</span>,</span><br><span class="line">                <span class="string">"count"</span>: <span class="number">22</span></span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>更多用法，参考<a href="https://mongoosejs.com/docs/api.html#Aggregate" target="_blank" rel="noopener">官方文档</a></p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://docs.mongodb.com/manual/aggregation/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/aggregation/</a></li>
+<li><a href="https://mongoosejs.com/docs/api.html#Aggregate" target="_blank" rel="noopener">https://mongoosejs.com/docs/api.html#Aggregate</a></li>
+</ul>
 
       
 
@@ -175,7 +180,7 @@
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongoose/">mongoose</a></li></ul>
 	</div>
 
       
@@ -191,18 +196,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/03/14/2016-03-14-note-ssd/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          宏碁4752g换ssd，光驱位装硬盘(多图慎入)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/03/09/2016-03-09-crm-share/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CRM前端架构分享</div>
+    <a href="/2018/10/30/2018-10-30-vultr-ss/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">科学上网：vultr搭建shadowsocks采坑记录</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -228,7 +224,7 @@
     repo: "yl2014.github.io",
     owner: "yl2014",
     admin: ["yl2014"],
-    id: "2016-03-13-define-upgrade",      // Ensure uniqueness and length less than 50
+    id: "2018-11-01-mongoose-aggregate-gruop",      // Ensure uniqueness and length less than 50
     distractionFreeMode: false  // Facebook-like distraction free mode
   })
   gitalk.render('gitalk-container')
