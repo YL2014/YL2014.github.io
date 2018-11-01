@@ -26,7 +26,7 @@ module.exports = ({ Schema, db }, app) => {
 }
 ```
 
-#### 以某个字段分组分组
+#### 以某个字段分组
 
 - aggregate group使用：如果需要分组的字段为`cname`，那么`_id`对应的值就为`$cname`
 
