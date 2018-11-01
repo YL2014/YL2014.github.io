@@ -77,9 +77,15 @@ smart_menu:
   innerArchive: '所有文章'
   friends: '友链'
   aboutme: '关于我'
+  servebuy: '服务器优惠'
 
 friends:
   凹凸实验室: https://aotu.io/
   dancdx's blog: https://dancdx.github.io/
 
-aboutme: 搬砖中...
+aboutme: 深圳搬砖，擅长搭筑，填坑
+servebuy:
+  阿里云2018双十一: https://m.aliyun.com/act/team1111/#/share?params=N.6CyWl6O9ZQ.51yfkmgw
+  阿里云长期推广: https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=51yfkmgw&utm_source=51yfkmgw
+  vultr: https://www.vultr.com/?ref=7574159
+

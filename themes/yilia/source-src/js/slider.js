@@ -48,10 +48,12 @@ function init() {
 				e.stopPropagation()
 				// innerArchive: '所有文章'
   				// friends: '友情链接'
-  				// aboutme: '关于我'
+          // aboutme: '关于我'
+          // servebuy: '服务器优惠'
   				app.$set('innerArchive', false)
   				app.$set('friends', false)
-  				app.$set('aboutme', false)
+          app.$set('aboutme', false)
+          app.$set('servebuy', false)
   				app.$set(type, true)
   				app.$set('isShow', true)
   				app.$set('isCtnShow', true)
