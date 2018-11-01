@@ -9,7 +9,7 @@
   <title>科学上网：vultr搭建shadowsocks采坑记录 | YL&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="说明：网上很多相关教程，大多数是基于centos的，本教程基于Ubuntu(主要是多账号设置)  注册vutrl账号，购买服务器 注册vutrl https://www.vultr.com">
-<meta name="keywords" content="vultr vps shadowsocks">
+<meta name="keywords" content="vultr,vps,shadowsocks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="科学上网：vultr搭建shadowsocks采坑记录">
 <meta property="og:url" content="https://yl.frontjs.cc/2018/10/30/2018-10-30-vultr-ss/index.html">
@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-9.png">
 <meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-10.png">
 <meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-11.png">
-<meta property="og:updated_time" content="2018-10-30T10:57:15.542Z">
+<meta property="og:updated_time" content="2018-10-30T12:12:54.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学上网：vultr搭建shadowsocks采坑记录">
 <meta name="twitter:description" content="说明：网上很多相关教程，大多数是基于centos的，本教程基于Ubuntu(主要是多账号设置)  注册vutrl账号，购买服务器 注册vutrl https://www.vultr.com">
@@ -82,6 +82,11 @@
             
     			
     			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+    			
+    			<a data-idx="3" q-on="click: openSlider(e, 'servebuy')" href="javascript:void(0)">服务器优惠</a>
     			
     			
             
@@ -268,7 +273,7 @@
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vultr-vps-shadowsocks/">vultr vps shadowsocks</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vps/">vps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vultr/">vultr</a></li></ul>
 	</div>
 
       
@@ -371,81 +376,89 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">文件上传</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">chrome</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">snippets</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">jekyll</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">blog</a>
-              </li>
-             
+            
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">crm</a>
               </li>
-             
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jekyll</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">chrome</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">snippets</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">文件上传</a>
+              </li>
+            
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">ssd</a>
               </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">又拍云</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ecs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ftp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
-              </li>
-             
+            
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">微信</a>
               </li>
-             
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ecs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ftp</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">又拍云</a>
+              </li>
+            
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">nodejs</a>
               </li>
-             
+            
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">let's encrype</a>
               </li>
-             
+            
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">https</a>
               </li>
-             
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vultr</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vps</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shadowsocks</a>
+              </li>
+            
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">vultr vps shadowsocks</a>
               </li>
             
             <div class="clearfix"></div>
@@ -510,15 +523,38 @@
     
 
     
+    	<section class="tools-section tools-section-servebuy" q-show="servebuy">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://m.aliyun.com/act/team1111/#/share?params=N.6CyWl6O9ZQ.51yfkmgw" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阿里云2018双十一</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=51yfkmgw&utm_source=51yfkmgw" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阿里云长期推广</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.vultr.com/?ref=7574159" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>vultr</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">搬砖中...</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">深圳搬砖，擅长搭筑，填坑</div>
   	  	
     	</section>
     
   </div>
-  
+
 </div>
+
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
