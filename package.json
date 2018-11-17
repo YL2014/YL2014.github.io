@@ -3,14 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "3.7.1"
+    "version": "3.7.0"
   },
   "scripts": {
-    "start": "hexo s",
-    "deploy": "hexo d -g"
+    "start": "npx hexo s",
+    "deploy": "npx hexo d -g"
   },
   "dependencies": {
     "hexo": "^3.2.0",
+    "hexo-cli": "^1.1.0",
     "hexo-deployer-git": "^0.3.1",
     "hexo-generator-archive": "^0.1.4",
     "hexo-generator-category": "^0.1.3",

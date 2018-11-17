@@ -2,114 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://yl.frontjs.cc/2018/11/12/2018-11-12-ngrok/</loc>
+    <loc>https://yl.frontjs.cc/2018/11/17/2018-11-17-bfs/</loc>
     
-    <lastmod>2018-11-12T03:30:13.950Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2018/11/01/2018-11-01-mongoose-aggregate-gruop/</loc>
-    
-    <lastmod>2018-11-01T10:07:34.047Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2018/10/30/2018-10-30-vultr-ss/</loc>
-    
-    <lastmod>2018-10-30T12:12:54.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2016/03/06/2016-03-06-chrome-tip-snippets/</loc>
-    
-    <lastmod>2018-07-26T11:46:11.459Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2016/03/08/2016-03-08-file-upload/</loc>
-    
-    <lastmod>2018-07-26T11:43:38.623Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2016/04/25/2016-04-25-upload-pic-upyun/</loc>
-    
-    <lastmod>2018-07-26T11:38:41.360Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2016/12/08/2016-12-08-ecs-nodejs/</loc>
-    
-    <lastmod>2018-07-26T11:35:40.600Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2018/03/30/2018-03-30-Let's%20Encrypt%20https/</loc>
-    
-    <lastmod>2018-07-26T11:27:44.919Z</lastmod>
+    <lastmod>2018-11-17T16:00:15.038Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://yl.frontjs.cc/2018/07/24/2018-07-24-manage-git-account/</loc>
     
-    <lastmod>2018-07-24T12:21:52.599Z</lastmod>
+    <lastmod>2018-11-17T15:46:58.096Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yl.frontjs.cc/2016/06/13/2016-06-13-ubuntu-ftp/</loc>
+    <loc>https://yl.frontjs.cc/2018/11/01/2018-11-01-mongoose-aggregate-gruop/</loc>
     
-    <lastmod>2018-07-24T07:44:25.203Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://yl.frontjs.cc/2016/04/11/2016-04-11-wx-use/</loc>
-    
-    <lastmod>2018-07-24T07:44:25.202Z</lastmod>
+    <lastmod>2018-11-17T15:46:58.096Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yl.frontjs.cc/2016/03/12/2016-03-13-define-upgrade/</loc>
+    <loc>https://yl.frontjs.cc/2018/11/12/2018-11-12-ngrok/</loc>
     
-    <lastmod>2018-07-24T07:44:25.201Z</lastmod>
+    <lastmod>2018-11-17T15:46:58.096Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://yl.frontjs.cc/2016/03/21/2016-03-21-add-event/</loc>
+    <loc>https://yl.frontjs.cc/2018/10/30/2018-10-30-vultr-ss/</loc>
     
-    <lastmod>2018-07-24T07:44:25.201Z</lastmod>
+    <lastmod>2018-11-17T15:46:58.096Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://yl.frontjs.cc/2016/03/14/2016-03-14-note-ssd/</loc>
     
-    <lastmod>2018-07-24T07:44:25.201Z</lastmod>
+    <lastmod>2018-11-17T15:46:58.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/03/21/2016-03-21-add-event/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/06/13/2016-06-13-ubuntu-ftp/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/04/11/2016-04-11-wx-use/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2018/03/30/2018-03-30-Let's%20Encrypt%20https/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/04/25/2016-04-25-upload-pic-upyun/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/12/08/2016-12-08-ecs-nodejs/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/03/06/2016-03-06-chrome-tip-snippets/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.094Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/03/12/2016-03-13-define-upgrade/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.094Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://yl.frontjs.cc/2016/03/08/2016-03-08-file-upload/</loc>
+    
+    <lastmod>2018-11-17T15:46:58.094Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://yl.frontjs.cc/2016/03/09/2016-03-09-crm-share/</loc>
     
-    <lastmod>2018-07-24T07:44:25.201Z</lastmod>
+    <lastmod>2018-11-17T15:46:58.094Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://yl.frontjs.cc/2016/03/05/2016-03-05-build-jekyll-blog/</loc>
     
-    <lastmod>2018-07-24T07:44:25.200Z</lastmod>
+    <lastmod>2018-11-17T15:46:58.094Z</lastmod>
     
   </url>
   
