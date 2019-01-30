@@ -84,7 +84,7 @@ deploy:
   repo: git@github.com:yl2014/yl2014.github.io.git
   branch: master
   name: yl2014
-  email: 842237798@qq.com
+  email: yl2014@users.noreply.github.com
 
 jsonContent:
   meta: false
