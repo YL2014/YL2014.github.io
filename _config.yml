@@ -81,7 +81,7 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:yl2014/yl2014.github.io.git
+  repo: https://github.com/YL2014/YL2014.github.io.git
   branch: master
   name: yl2014
   email: yl2014@users.noreply.github.com
