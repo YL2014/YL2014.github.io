@@ -12,6 +12,8 @@ Run `npm config delete prefix` or `nvm use --delete-prefix v8.11.2 --silent` to 
 
 最近在`vscode`的终端经常会看到这个警告，`nvm ls`一下，可以看到，IDE里的终端默认使用的`node`指向了`system`。
 
+<!-- more -->
+
 我们知道，为了开发方便以及版本切换，`nodejs`基本都是用`nvm`来安装了，不会直接去官网下载安装文件进行安装，那么指向`system`的`nodejs`是哪里来的？
 
 OK，我们看看`brew list`，可以看到`node`在`brew`的安装列表里，不过我们并没有通过`brew install node`来安装过`nodejs`。
