@@ -24,7 +24,7 @@ OK，我们看看`brew list`，可以看到`node`在`brew`的安装列表里，�
 ```bash
 $ brew uninstall yarn
 $ brew uninstall node
-$ brew prune
+$ brew cleanup --prune-prefix
 $ brew install yarn --ignore-dependencies
 ```
 
