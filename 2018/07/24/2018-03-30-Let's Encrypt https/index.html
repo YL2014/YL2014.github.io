@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://yl.frontjs.cc">
+  <title>Let&#39;s Encrypt 通配符证书配置 | YL&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文只是对配置过程的记录，如有问题，欢迎留言  环境与依赖">
+<meta name="keywords" content="let&#39;s encrype,https">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let&#39;s Encrypt 通配符证书配置">
+<meta property="og:url" content="https://yl.frontjs.cc/2018/07/24/2018-03-30-Let's Encrypt https/index.html">
+<meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:description" content="本文只是对配置过程的记录，如有问题，欢迎留言  环境与依赖">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/34860A24C96A4D97BA0C7E4F53813F74/8813">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/816102C56AF84B6CBF7F29817DB70D64/8818">
+<meta property="og:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/68408B5BE6844EE1A1E007CD6B1F6CF0/8821">
+<meta property="og:updated_time" content="2018-07-24T09:33:51.113Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Let&#39;s Encrypt 通配符证书配置">
+<meta name="twitter:description" content="本文只是对配置过程的记录，如有问题，欢迎留言  环境与依赖">
+<meta name="twitter:image" content="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809">
+  
+    <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png">
+  
+  <link rel="stylesheet" href="/main.css?v=4.0.0">
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">YuanLong</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">YuanLong</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="http://7xrl5v.com1.z0.glb.clouddn.com/github/io/logo.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">YuanLong</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-2018-03-30-Let&#39;s Encrypt https" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Let&#39;s Encrypt 通配符证书配置
+    </h1>
+  
+
+        <a href="/2018/07/24/2018-03-30-Let's Encrypt https/" class="archive-article-date">
+  	<time datetime="2018-07-24T07:44:25.203Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文只是对配置过程的记录，如有问题，欢迎留言</p>
+</blockquote>
+<h4 id="环境与依赖"><a href="#环境与依赖" class="headerlink" title="环境与依赖"></a>环境与依赖</h4><a id="more"></a>
+<p>阿里云ECS ubunt16.0.4<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install software-properties-common</span><br><span class="line">$ sudo add-apt-repository ppa:certbot/certbot</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install python-certbot-nginx</span><br></pre></td></tr></table></figure></p>
+<h4 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ certbot -d *.frontjs.cc --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns-01</span><br></pre></td></tr></table></figure>
+<p>按提示操作，注意事项如下：<br><!-- ![](https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809) --><br><img src="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/D7CADC68DF2D4E95BF33B073D7DDBC6F/8809" alt=""><br>注意上面做记号的地方，到了这里先不要Enter，先去阿里云上域名解析哪里添加一条解析<br><img src="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/34860A24C96A4D97BA0C7E4F53813F74/8813" alt=""><br>添加完成后，新开一个窗口测试下是否成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ dig _acme-challenge.frontjs.cc txt</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/816102C56AF84B6CBF7F29817DB70D64/8818" alt=""><br>如上图所示，表示成功了<br>然后回到安装的窗口，按Enter<br><img src="https://note.youdao.com/yws/public/resource/667b3a08188154053ca30cc9b4a55670/xmlnote/68408B5BE6844EE1A1E007CD6B1F6CF0/8821" alt=""><br>OK，证书生成完成</p>
+<blockquote>
+<p>证书有效期3个月，设置定时任务来更新证书</p>
+<ul>
+<li>编写定时任务脚本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/letsencrypt/live/renew.sh</span><br><span class="line"># 内容：certbot renew --pre-hook &quot;service nginx stop&quot; --post-hook &quot;service nginx start&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>设置定时任务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ crontab -e</span><br><span class="line"># 添加如下内容 0 0 1 * * /etc/letsencrypt/live/renew.sh &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  listen [::]:80;</span><br><span class="line"></span><br><span class="line">  listen 443 ssl;</span><br><span class="line">  # ssl off 支持http和https</span><br><span class="line">  # ssl on;</span><br><span class="line">  ssl_certificate /etc/letsencrypt/live/frontjs.cc/fullchain.pem;</span><br><span class="line">  ssl_certificate_key /etc/letsencrypt/live/frontjs.cc/privkey.pem;</span><br><span class="line"></span><br><span class="line">  server_name frontjs.cc;</span><br><span class="line"></span><br><span class="line">  # 强制https</span><br><span class="line">  # rewrite ^(.*)$  https://$host$1 permanent;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1:7000;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启nginx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service nginx restart</span><br></pre></td></tr></table></figure></p>
+<h5 id="enjoy-yourself"><a href="#enjoy-yourself" class="headerlink" title="enjoy yourself!"></a>enjoy yourself!</h5><h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://letsencrypt.org/" target="_blank" rel="noopener">https://letsencrypt.org/</a><br><a href="https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx" target="_blank" rel="noopener">https://certbot.eff.org/lets-encrypt/ubuntuxenial-nginx</a><br><a href="https://certbot.eff.org/docs/using.html" target="_blank" rel="noopener">https://certbot.eff.org/docs/using.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/https/">https</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/let-s-encrype/">let's encrype</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://yl.frontjs.cc/2018/07/24/2018-03-30-Let's Encrypt https/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/08/2016-12-08-ecs-nodejs/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ECS上nodejs升级(7.2.0)记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2018-03-30-Let&#39;s Encrypt https" data-title="Let&#39;s Encrypt 通配符证书配置" data-url="https://yl.frontjs.cc/2018/07/24/2018-03-30-Let&#39;s Encrypt https/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yl2014-github-io"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2018 YuanLong
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=4.0.0"></script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jekyll</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">chrome</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">snippets</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">crm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">文件上传</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssd</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">微信</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">又拍云</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ecs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ftp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nodejs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">let's encrype</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">https</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://aotu.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凹凸实验室</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://dancdx.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>dancdx&#39;s blog</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">搬砖中...</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
