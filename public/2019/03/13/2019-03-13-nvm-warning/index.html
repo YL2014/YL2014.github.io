@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://yl.frontjs.cc">
+  <title>NVM is not compatible with the npm config &quot;prefix&quot; option warning (OS X) | YL&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="12nvm is not compatible with the npm config &quot;prefix&quot; option: currently set to &quot;/usr/local&quot;Run `npm config delete prefix` or `nvm use --delete-prefix v8.11.2 --silent` to unset it. 最近在vscode的终端经常会看到这个警">
+<meta name="keywords" content="nodejs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NVM is not compatible with the npm config &quot;prefix&quot; option warning (OS X)">
+<meta property="og:url" content="https://yl.frontjs.cc/2019/03/13/2019-03-13-nvm-warning/index.html">
+<meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:description" content="12nvm is not compatible with the npm config &quot;prefix&quot; option: currently set to &quot;/usr/local&quot;Run `npm config delete prefix` or `nvm use --delete-prefix v8.11.2 --silent` to unset it. 最近在vscode的终端经常会看到这个警">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2021-01-12T12:13:35.757Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NVM is not compatible with the npm config &quot;prefix&quot; option warning (OS X)">
+<meta name="twitter:description" content="12nvm is not compatible with the npm config &quot;prefix&quot; option: currently set to &quot;/usr/local&quot;Run `npm config delete prefix` or `nvm use --delete-prefix v8.11.2 --silent` to unset it. 最近在vscode的终端经常会看到这个警">
+  
+    <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.jpeg">
+  
+  <link rel="stylesheet" href="/main.css?v=1.0.0">
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/images/avatar.jpeg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">YL2014</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+    			
+    			<a data-idx="3" q-on="click: openSlider(e, 'servebuy')" href="javascript:void(0)">服务器优惠</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">YL2014</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/avatar.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">YL2014</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-2019-03-13-nvm-warning" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NVM is not compatible with the npm config &quot;prefix&quot; option warning (OS X)
+    </h1>
+  
+
+        <a href="/2019/03/13/2019-03-13-nvm-warning/" class="archive-article-date">
+  	<time datetime="2019-03-13T07:35:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-13</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nvm is not compatible with the npm config <span class="string">"prefix"</span> option: currently <span class="built_in">set</span> to <span class="string">"/usr/local"</span></span><br><span class="line">Run `npm config delete prefix` or `nvm use --delete-prefix v8.11.2 --silent` to <span class="built_in">unset</span> it.</span><br></pre></td></tr></table></figure>
+<p>最近在<code>vscode</code>的终端经常会看到这个警告，<code>nvm ls</code>一下，可以看到，IDE里的终端默认使用的<code>node</code>指向了<code>system</code>。</p>
+<a id="more"></a>
+<p>我们知道，为了开发方便以及版本切换，<code>nodejs</code>基本都是用<code>nvm</code>来安装了，不会直接去官网下载安装文件进行安装，那么指向<code>system</code>的<code>nodejs</code>是哪里来的？</p>
+<p>OK，我们看看<code>brew list</code>，可以看到<code>node</code>在<code>brew</code>的安装列表里，不过我们并没有通过<code>brew install node</code>来安装过<code>nodejs</code>。</p>
+<p>尝试卸载<code>system</code>的<code>nodejs</code>, <code>brew uninstall node</code>，会得到告警，该<code>node</code>是<code>yarn</code>的依赖，不能卸载，这就对上了，看看怎么解决这个问题。</p>
+<ul>
+<li><p>卸载<code>yarn</code>和<code>node</code>，然后再安装<code>yarn</code>，同时加上去掉依赖安装参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ brew uninstall yarn</span><br><span class="line">$ brew uninstall node</span><br><span class="line">$ brew cleanup --prune-prefix</span><br><span class="line">$ brew install yarn --ignore-dependencies</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清除<code>system</code>的<code>node</code>残留文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf  /usr/<span class="built_in">local</span>/lib/node_modules</span><br><span class="line">$ rm /usr/<span class="built_in">local</span>/bin/npm</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>重新打开终端，基本上就不会有这个警告出现了。</p>
+<blockquote>
+<p>参考：<a href="https://github.com/creationix/nvm/issues/1245#issuecomment-387460769" target="_blank" rel="noopener">https://github.com/creationix/nvm/issues/1245#issuecomment-387460769</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/19/2020-04-19-mysql-1366/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          pymysql.err.InternalError) (1366, &quot;Incorrect string value解决方法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/12/2018-12-12-openrestry-nginx-http2-module/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">openresty(动态)添加nginx模块</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: "372a11e9ce991fcbf79b",
+    clientSecret: "c4b232bf5ac7503fe141fc3ef2f1229f5f22187d",
+    repo: "yl2014.github.io",
+    owner: "yl2014",
+    admin: ["yl2014"],
+    id: "2019-03-13-nvm-warning",      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+        &copy; 2021 YL2014
+        备案号：<a href="https://beian.miit.gov.cn" target="_blank">粤ICP备15016170号</a>
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=1.0.0"></script>
+
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jekyll</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">chrome</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">snippets</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">crm</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssd</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ecs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ftp</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nodejs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ngrok</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">又拍云</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">let's encrype</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">https</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vultr</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vps</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shadowsocks</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">算法</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mongoose</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nginx</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">文件上传</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">微信</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://aotu.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凹凸实验室</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://dancdx.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>dancdx&#39;s blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://blog.longyb.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>LongYuBo&#39;s Blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://laily.net" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Laily&#39;s Blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cnblogs.com/aheizi" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>HuangYangQuan&#39;s Blog</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-servebuy" q-show="servebuy">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=51yfkmgw&utm_source=51yfkmgw" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阿里云长期推广</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.vultr.com/?ref=7574159" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>vultr</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">深圳搬砖，挖坑填坑</div>
+  	  	
+    	</section>
+    
+  </div>
+
+</div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275034405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1275034405%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  <script>
+    var cnzzNode = document.getElementById('cnzz_stat_icon_1275034405')
+    var footRight = document.querySelector('.footer-right')
+    if(cnzzNode) {
+      footRight.appendChild(cnzzNode)
+    }
+  </script>
+</body>
+</html>
