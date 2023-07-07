@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://yl.frontjs.cc">
+  <title>科学上网：vultr搭建shadowsocks采坑记录 | YL&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="说明：网上很多相关教程，大多数是基于centos的，本教程基于Ubuntu(主要是多账号设置)  注册vutrl账号，购买服务器 注册vutrl https://www.vultr.com">
+<meta name="keywords" content="vultr,vps,shadowsocks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科学上网：vultr搭建shadowsocks采坑记录">
+<meta property="og:url" content="https://yl.frontjs.cc/2018/10/30/2018-10-30-vultr-ss/index.html">
+<meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:description" content="说明：网上很多相关教程，大多数是基于centos的，本教程基于Ubuntu(主要是多账号设置)  注册vutrl账号，购买服务器 注册vutrl https://www.vultr.com">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-1.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-2.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-3.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-4.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-5.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-6.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-7.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-8.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-9.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-10.png">
+<meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-11.png">
+<meta property="og:updated_time" content="2023-06-06T05:34:17.556Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科学上网：vultr搭建shadowsocks采坑记录">
+<meta name="twitter:description" content="说明：网上很多相关教程，大多数是基于centos的，本教程基于Ubuntu(主要是多账号设置)  注册vutrl账号，购买服务器 注册vutrl https://www.vultr.com">
+<meta name="twitter:image" content="https://yl.frontjs.cc/images/2018-10/30-1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.jpeg">
+  
+  <link rel="stylesheet" href="/main.css?v=1.0.0">
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/images/avatar.jpeg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">YL2014</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+    			
+    			<a data-idx="3" q-on="click: openSlider(e, 'servebuy')" href="javascript:void(0)">服务器优惠</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">YL2014</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/avatar.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">YL2014</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-2018-10-30-vultr-ss" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      科学上网：vultr搭建shadowsocks采坑记录
+    </h1>
+  
+
+        <a href="/2018/10/30/2018-10-30-vultr-ss/" class="archive-article-date">
+  	<time datetime="2018-10-30T07:35:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-30</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>说明：网上很多相关教程，大多数是基于centos的，本教程基于Ubuntu(主要是多账号设置)</p>
+</blockquote>
+<h4 id="注册vutrl账号，购买服务器"><a href="#注册vutrl账号，购买服务器" class="headerlink" title="注册vutrl账号，购买服务器"></a>注册vutrl账号，购买服务器</h4><ul>
+<li>注册vutrl <a href="https://www.vultr.com/?ref=7574159" target="_blank" rel="noopener">https://www.vultr.com</a></li>
+</ul>
+<a id="more"></a>
+<p>新用户注册使用PayPal，充值多少送多少，最多送100刀(果断充值了100刀，后面发现赠送的100刀有效期是1年)<br><img src="/images/2018-10/30-1.png" alt></p>
+<ul>
+<li>购买服务器，选择最新的Ubuntu，节点选日本东京</li>
+</ul>
+<p><img src="/images/2018-10/30-2.png" alt></p>
+<p><img src="/images/2018-10/30-3.png" alt></p>
+<ul>
+<li>配置选最小的，不过$2.5每月的只支持IPV6，不建议选择，我这里选的每月5刀的，选择完后点击<code>deploy now</code>，然后等待服务器配置并启动</li>
+</ul>
+<p><img src="/images/2018-10/30-4.png" alt></p>
+<p><img src="/images/2018-10/30-5.png" alt></p>
+<ul>
+<li>启动完成后，在<code>Servers</code>里就可以看到刚才购买的vps了</li>
+</ul>
+<p><img src="/images/2018-10/30-6.png" alt></p>
+<ul>
+<li>点击服务器，查看服务器的ip，用户名，以及密码</li>
+</ul>
+<p><img src="/images/2018-10/30-7.png" alt></p>
+<h4 id="安装shadowsocks"><a href="#安装shadowsocks" class="headerlink" title="安装shadowsocks"></a>安装shadowsocks</h4><ul>
+<li>ssh登录服务器，账号密码来源于上图</li>
+</ul>
+<p><img src="/images/2018-10/30-8.png" alt></p>
+<ul>
+<li><p>安装shadowsocks，网上教程很多，这里直接copy过来安装脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br><span class="line">$ chmod +x shadowsocks.sh</span><br><span class="line">$ ./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如上三步执行完成后，中途会让你设置一个密码，选择一个端口，还有选择一个协议(忘了截图了…)，协议我选的第7个<code>aes-256-cfb</code>，等待一会后，shadowsocks就安装好了，控制台可以看到shadowsocks服务的相关信息，大致如下，至此，ss服务就已经可用了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Your Server IP        :  IP</span><br><span class="line">Your Server Port      :  Port</span><br><span class="line">Your Password         :  Password</span><br><span class="line">Your Encryption Method:  aes-256-cfb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装shadowsocks客户端</p>
+<ul>
+<li><a href="https://github.com/qinyuhang/ShadowsocksX-NG-R/releases" target="_blank" rel="noopener">ShadowsocksX-NG</a></li>
+<li><a href="https://sourceforge.net/projects/shadowsocksgui/" target="_blank" rel="noopener">Mac版</a></li>
+<li><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">windows版</a></li>
+</ul>
+</li>
+<li><p>添加shadowsocks服务器信息</p>
+</li>
+</ul>
+<p><img src="/images/2018-10/30-9.png" alt></p>
+<p>大功告成，可以尝试访问<a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a>，然后可以愉快的工作了</p>
+<h4 id="TCP加速与多账号配置"><a href="#TCP加速与多账号配置" class="headerlink" title="TCP加速与多账号配置"></a>TCP加速与多账号配置</h4><ul>
+<li><p>打开TCP Fast Open</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/rc.local</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加如下内容到上面打开的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 3 &gt; /proc/sys/net/ipv4/tcp_fastopen</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>参照上面方法，添加<code>net.ipv4.tcp_fastopen = 3</code>到<code>/etc/sysctl.conf</code>文件</p>
+</li>
+<li><p>修改shadowsocks配置文件的<code>fast_open</code>选项为<code>true</code>，参考下面多账号配置里的修改</p>
+</li>
+<li><p>多账号端口配置：修改shadowsocks配置，配置文件地址为<code>/etc/shadowsocks.json</code>，添加多个端口和对应的密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># 原配置</span><br><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;server_port&quot;:port,</span><br><span class="line">    &quot;local_address&quot;:&quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;local_port&quot;:1080,</span><br><span class="line">    &quot;password&quot;:&quot;password&quot;,</span><br><span class="line">    &quot;timeout&quot;:300,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</span><br><span class="line">    &quot;fast_open&quot;:false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 修改后的配置</span><br><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;:&quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;local_address&quot;:&quot;127.0.0.1&quot;,</span><br><span class="line">    &quot;local_port&quot;:1080,</span><br><span class="line">    &quot;port_password&quot;: &#123;</span><br><span class="line">      &quot;port1&quot;:&quot;psw1&quot;,</span><br><span class="line">      &quot;port2&quot;:&quot;psw2&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;timeout&quot;:300,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</span><br><span class="line">    &quot;fast_open&quot;:true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启shadowsocks服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>至此，加速与多账号端口配置就完成了，然后我们在shadowsocks客户端里添加这两个账号，链接试试。惊喜的发现，只有最后配置的那个可以成功连接，前面的连接上后还是会困在墙里。没错，需要修改防火墙的配置</p>
+<h4 id="防火墙配置修改"><a href="#防火墙配置修改" class="headerlink" title="防火墙配置修改"></a>防火墙配置修改</h4><ul>
+<li>vultr防火墙配置</li>
+</ul>
+<p>protocol选择TCP(我同时开启了UDP)，port选择shadowsocks里开启的多个端口，有多少个端口就配置多少个rule(PS: 我看Port旁边显示的<code>or range</code>，不过设置range后无效，有同学可以设置rang的话，麻烦留言指教下，感谢感谢)。rules设置后，在Linked Instances里选择你的实例进行关联</p>
+<p><img src="/images/2018-10/30-10.png" alt></p>
+<p><img src="/images/2018-10/30-11.png" alt></p>
+<ul>
+<li><p>服务器防火墙配置</p>
+<ul>
+<li><p>登录服务器后，控制台安装<code>ufw</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install ufw</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>allow需要开放的端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ufw enable</span><br><span class="line">$ ufw default deny</span><br><span class="line">$ ufw allow 22/tcp</span><br><span class="line">$ ufw allow port1</span><br><span class="line">$ ufw allow port2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启ufw服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ufw reload</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>重启shadowsocks服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /etc/init.d/shadowsocks restart</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后使用shadowsocks客户端连接多个账号，发现都能成功连接了</p>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><ul>
+<li>科学上网，文明上网</li>
+<li>如若本教程违反相关法律法规，请联系本人进行删除</li>
+</ul>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
+<li><a href="https://medium.com/@zoomyale/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E7%9A%84%E7%BB%88%E6%9E%81%E5%A7%BF%E5%8A%BF-%E5%9C%A8-vultr-vps-%E4%B8%8A%E6%90%AD%E5%BB%BA-shadowsocks-fd57c807d97e" target="_blank" rel="noopener">科学上网之vultr安装shadowsocks</a></li>
+<li><a href="https://www.cnblogs.com/sweet521/p/5733466.html" target="_blank" rel="noopener">ufw用法</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks/">shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vps/">vps</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vultr/">vultr</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/11/01/2018-11-01-mongoose-aggregate-gruop/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          mongoose分组查询记录
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/24/2018-07-24-manage-git-account/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">GitHub多账号管理踩坑记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: "372a11e9ce991fcbf79b",
+    clientSecret: "c4b232bf5ac7503fe141fc3ef2f1229f5f22187d",
+    repo: "yl2014.github.io",
+    owner: "yl2014",
+    admin: ["yl2014"],
+    id: "2018-10-30-vultr-ss",      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 YL2014 备案号：<a href="https://beian.miit.gov.cn" target="_blank"
+          >鄂ICP备2023011238号</a
+        >
+      </div>
+      <div class="footer-right">
+        <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=1.0.0"></script>
+
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jekyll</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">chrome</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">snippets</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">文件上传</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">crm</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssd</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">微信</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nodejs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ecs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">又拍云</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ftp</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">let's encrype</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">https</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vultr</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vps</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shadowsocks</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mongoose</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ngrok</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">算法</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nginx</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://aotu.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凹凸实验室</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://dancdx.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>dancdx&#39;s blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://blog.longyb.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>LongYuBo&#39;s Blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://laily.net" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Laily&#39;s Blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cnblogs.com/aheizi" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>HuangYangQuan&#39;s Blog</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-servebuy" q-show="servebuy">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=51yfkmgw&utm_source=51yfkmgw" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阿里云长期推广</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.vultr.com/?ref=7574159" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>vultr</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">深圳搬砖，挖坑填坑</div>
+  	  	
+    	</section>
+    
+  </div>
+
+</div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275034405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1275034405%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  <script>
+    var cnzzNode = document.getElementById('cnzz_stat_icon_1275034405')
+    var footRight = document.querySelector('.footer-right')
+    if(cnzzNode) {
+      footRight.appendChild(cnzzNode)
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://yl.frontjs.cc">
+  <title>微信jssdk使用记录 | YL&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="话说接触微信开发是毕业前的第一份工作，当时所做的就是一些微信上的活动推广页面，用到的jssdk就只有微信分享跟网页登录授权吧。记得很久以前微信分享是不需要后端支持的，后来世界变了，不能只靠前端来拯救世界了… 最近的项目就是微信端的，首先用到的就是jssdk。下面整理几个，还没用上的等用上了再来补充。">
+<meta name="keywords" content="js,微信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信jssdk使用记录">
+<meta property="og:url" content="https://yl.frontjs.cc/2016/04/11/2016-04-11-wx-use/index.html">
+<meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:description" content="话说接触微信开发是毕业前的第一份工作，当时所做的就是一些微信上的活动推广页面，用到的jssdk就只有微信分享跟网页登录授权吧。记得很久以前微信分享是不需要后端支持的，后来世界变了，不能只靠前端来拯救世界了… 最近的项目就是微信端的，首先用到的就是jssdk。下面整理几个，还没用上的等用上了再来补充。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2023-06-06T05:34:17.554Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信jssdk使用记录">
+<meta name="twitter:description" content="话说接触微信开发是毕业前的第一份工作，当时所做的就是一些微信上的活动推广页面，用到的jssdk就只有微信分享跟网页登录授权吧。记得很久以前微信分享是不需要后端支持的，后来世界变了，不能只靠前端来拯救世界了… 最近的项目就是微信端的，首先用到的就是jssdk。下面整理几个，还没用上的等用上了再来补充。">
+  
+    <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.jpeg">
+  
+  <link rel="stylesheet" href="/main.css?v=1.0.0">
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/images/avatar.jpeg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">YL2014</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+    			
+    			<a data-idx="3" q-on="click: openSlider(e, 'servebuy')" href="javascript:void(0)">服务器优惠</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">YL2014</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/avatar.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">YL2014</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-2016-04-11-wx-use" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信jssdk使用记录
+    </h1>
+  
+
+        <a href="/2016/04/11/2016-04-11-wx-use/" class="archive-article-date">
+  	<time datetime="2016-04-11T09:39:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-11</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>话说接触微信开发是毕业前的第一份工作，当时所做的就是一些微信上的活动推广页面，用到的jssdk就只有微信分享跟网页登录授权吧。记得很久以前微信分享是不需要后端支持的，后来世界变了，不能只靠前端来拯救世界了…</p>
+<p>最近的项目就是微信端的，首先用到的就是jssdk。下面整理几个，还没用上的等用上了再来补充。</p>
+<a id="more"></a>
+<p>首先贴上微信jssdk地址：<a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html" target="_blank" rel="noopener">http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html</a></p>
+<h3 id="初始配置"><a href="#初始配置" class="headerlink" title="初始配置"></a>初始配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wxConfig</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">    wx.config(&#123;</span><br><span class="line">        debug: <span class="literal">false</span>,</span><br><span class="line">        appId: option.appId,</span><br><span class="line">        timestamp: option.timestamp,</span><br><span class="line">        nonceStr: option.nonceStr,</span><br><span class="line">        signature: option.signature,</span><br><span class="line">        jsApiList: [</span><br><span class="line">            <span class="string">'onMenuShareTimeline'</span>,</span><br><span class="line">            <span class="string">'onMenuShareAppMessage'</span>,</span><br><span class="line">            <span class="string">'onMenuShareQQ'</span>,</span><br><span class="line">            <span class="string">'onMenuShareWeibo'</span>,</span><br><span class="line">            <span class="string">'onMenuShareQZone'</span>,</span><br><span class="line">            <span class="string">'startRecord'</span>,</span><br><span class="line">            <span class="string">'stopRecord'</span>,</span><br><span class="line">            <span class="string">'onVoiceRecordEnd'</span>,</span><br><span class="line">            <span class="string">'playVoice'</span>,</span><br><span class="line">            <span class="string">'pauseVoice'</span>,</span><br><span class="line">            <span class="string">'stopVoice'</span>,</span><br><span class="line">            <span class="string">'onVoicePlayEnd'</span>,</span><br><span class="line">            <span class="string">'uploadVoice'</span>,</span><br><span class="line">            <span class="string">'downloadVoice'</span>,</span><br><span class="line">            <span class="string">'chooseImage'</span>,</span><br><span class="line">            <span class="string">'previewImage'</span>,</span><br><span class="line">            <span class="string">'uploadImage'</span>,</span><br><span class="line">            <span class="string">'downloadImage'</span>,</span><br><span class="line">            <span class="string">'translateVoice'</span>,</span><br><span class="line">            <span class="string">'getNetworkType'</span>,</span><br><span class="line">            <span class="string">'openLocation'</span>,</span><br><span class="line">            <span class="string">'getLocation'</span>, <span class="comment">//获取位置信息</span></span><br><span class="line">            <span class="string">'hideOptionMenu'</span>,</span><br><span class="line">            <span class="string">'showOptionMenu'</span>,</span><br><span class="line">            <span class="string">'hideMenuItems'</span>,</span><br><span class="line">            <span class="string">'showMenuItems'</span>,</span><br><span class="line">            <span class="string">'hideAllNonBaseMenuItem'</span>,</span><br><span class="line">            <span class="string">'showAllNonBaseMenuItem'</span>,</span><br><span class="line">            <span class="string">'closeWindow'</span>,</span><br><span class="line">            <span class="string">'scanQRCode'</span>,</span><br><span class="line">            <span class="string">'chooseWXPay'</span>, <span class="comment">//支付</span></span><br><span class="line">            <span class="string">'openProductSpecificView'</span>,</span><br><span class="line">            <span class="string">'addCard'</span>,</span><br><span class="line">            <span class="string">'chooseCard'</span>,</span><br><span class="line">            <span class="string">'openCard'</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>有 <code>option</code> 的参数是后端给的，具体的后端实现可以参考<a href="http://demo.open.weixin.qq.com/jssdk/sample.zip" target="_blank" rel="noopener">微信的官方demo</a></p>
+</blockquote>
+<h3 id="获取位置信息"><a href="#获取位置信息" class="headerlink" title="获取位置信息"></a>获取位置信息</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getLocation</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    wx.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        wx.getLocation(&#123;</span><br><span class="line">            type: <span class="string">'gcj02'</span>,</span><br><span class="line">            success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> res = data;</span><br><span class="line">                <span class="keyword">if</span>(data.res)&#123;</span><br><span class="line">                    res = data.res;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">var</span> latitude = res.latitude;</span><br><span class="line">                <span class="keyword">var</span> longitude = res.longitude;</span><br><span class="line">                Utils.setData(<span class="string">'position'</span>,<span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">                    latitude: latitude,</span><br><span class="line">                    longitude: longitude</span><br><span class="line">                &#125;));</span><br><span class="line">                <span class="comment">//if(latitude &amp;&amp; longitude)&#123;</span></span><br><span class="line">                    getDetailAddr(latitude, longitude);</span><br><span class="line">                <span class="comment">//&#125;</span></span><br><span class="line">            &#125;,</span><br><span class="line">            fail: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">                page.location = page.locationFailTip;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上代码通过微信拿到经纬度后，向后端发起请求拿详细地址(想前端自己拿详细地址，可以借助于百度地图的api，百度地图在微信里能否使用还没做尝试)</p>
+</blockquote>
+<h3 id="微信支付"><a href="#微信支付" class="headerlink" title="微信支付"></a>微信支付</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wxPays</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">    wx.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        wx.chooseWXPay(&#123;</span><br><span class="line">            timestamp: option.timeStamp, <span class="comment">// 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符</span></span><br><span class="line">            nonceStr: option.nonceStr, <span class="comment">// 支付签名随机串，不长于 32 位</span></span><br><span class="line">            package: option.package, <span class="comment">// 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）</span></span><br><span class="line">            signType: option.signType, <span class="comment">// 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'</span></span><br><span class="line">            paySign: option.paySign, <span class="comment">// 支付签名</span></span><br><span class="line">            success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">                <span class="comment">// 支付成功后的回调函数,请求服务器查询支付结果</span></span><br><span class="line">                <span class="keyword">var</span> prepayId = option.package.split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">                checkPayResult(prepayId);</span><br><span class="line">            &#125;,</span><br><span class="line">            fail: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;&#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上带<code>option</code>的参数需服务端提供，发起微信支付后，会自动调出微信支付的面板，完成支付或取消支付会进入相应的回调，根据微信官方提供的<a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_4" target="_blank" rel="noopener">支付文档(业务流程说明)</a>，支付完成后，服务端需确认是否支付成功，所以我们还得向服务端发送一次支付结果确认请求。</p>
+</blockquote>
+<p>当时调支付时一个很小的错误导致支付面板没弹出，就使用了<a href="https://pay.weixin.qq.com/wiki/doc/api/jsapi.php?chapter=7_7&amp;index=6" target="_blank" rel="noopener">支付文档</a>里的示例<code>demo</code>，如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wxPays</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//alert('微信支付配置参数:'+JSON.stringify(option));</span></span><br><span class="line">    onBridgeReady(option);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">onBridgeReady</span>(<span class="params">option</span>)</span>&#123;</span><br><span class="line">        WeixinJSBridge.invoke(</span><br><span class="line">            <span class="string">'getBrandWCPayRequest'</span>, &#123;</span><br><span class="line">                <span class="string">"appId"</span> : option.appId,     <span class="comment">//公众号名称，由商户传入</span></span><br><span class="line">                <span class="string">"timeStamp"</span> : option.timeStamp,         <span class="comment">//时间戳，自1970年以来的秒数</span></span><br><span class="line">                <span class="string">"nonceStr"</span> : option.nonceStr, <span class="comment">//随机串</span></span><br><span class="line">                <span class="string">"package"</span> : option.package,</span><br><span class="line">                <span class="string">"signType"</span> : option.signType,         <span class="comment">//微信签名方式：</span></span><br><span class="line">                <span class="string">"paySign"</span> : option.paySign <span class="comment">//微信签名</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">                <span class="comment">// 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。</span></span><br><span class="line">                <span class="comment">//if(/ok/.test(res.err_msg)) &#123;</span></span><br><span class="line">                <span class="keyword">if</span>(res.err_msg == <span class="string">"get_brand_wcpay_request:ok"</span>) &#123;</span><br><span class="line">                    <span class="keyword">var</span> prepayId = option.package.split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">                    checkPayResult(prepayId);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    Utils.alert(&#123;</span><br><span class="line">                        title: <span class="string">'懂师傅提示您'</span>,</span><br><span class="line">                        content: <span class="string">'支付失败，请重新支付'</span>,</span><br><span class="line">                        callback: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                            <span class="built_in">window</span>.location.reload();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> WeixinJSBridge == <span class="string">"undefined"</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>( <span class="built_in">document</span>.addEventListener )&#123;</span><br><span class="line">            <span class="built_in">document</span>.addEventListener(<span class="string">'WeixinJSBridgeReady'</span>, onBridgeReady, <span class="literal">false</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.attachEvent)&#123;</span><br><span class="line">            <span class="built_in">document</span>.attachEvent(<span class="string">'WeixinJSBridgeReady'</span>, onBridgeReady);</span><br><span class="line">            <span class="built_in">document</span>.attachEvent(<span class="string">'onWeixinJSBridgeReady'</span>, onBridgeReady);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        onBridgeReady();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该方法在<code>android</code>机上测试是有效的，在<code>ios</code>机上测试是提示<code>调用jsApi时没有传timeStamp</code>，不知道是什么鬼，哪位朋友知道怎么解决的，欢迎留言告知，不胜感谢</p>
+<h3 id="选择图片与上传图片"><a href="#选择图片与上传图片" class="headerlink" title="选择图片与上传图片"></a>选择图片与上传图片</h3><h5 id="选择图片"><a href="#选择图片" class="headerlink" title="选择图片"></a>选择图片</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uploadImage</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    wx.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        wx.chooseImage(&#123;</span><br><span class="line">            count: <span class="number">3</span>-page.photos.length, <span class="comment">// 默认9</span></span><br><span class="line">            sizeType: [<span class="string">'original'</span>, <span class="string">'compressed'</span>], <span class="comment">// 可以指定是原图还是压缩图，默认二者都有</span></span><br><span class="line">            sourceType: [<span class="string">'album'</span>, <span class="string">'camera'</span>], <span class="comment">// 可以指定来源是相册还是相机，默认二者都有</span></span><br><span class="line">            success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> localIds = res.localIds; <span class="comment">// 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片</span></span><br><span class="line">                localIds.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(page.photos.indexOf(item) == <span class="number">-1</span>)&#123;</span><br><span class="line">                        page.photos.push(item);</span><br><span class="line">                        uploadToWx(item);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            fail: <span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;&#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="上传图片"><a href="#上传图片" class="headerlink" title="上传图片"></a>上传图片</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uploadToWx</span>(<span class="params">localId</span>)</span>&#123;</span><br><span class="line">    wx.uploadImage(&#123;</span><br><span class="line">        localId: localId, <span class="comment">// 需要上传的图片的本地ID，由chooseImage接口获得</span></span><br><span class="line">        isShowProgressTips: <span class="number">0</span>, <span class="comment">// 默认为1，显示进度提示</span></span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">            page.serverIds.push(res.serverId); <span class="comment">// 返回图片的服务器端ID</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>感觉微信提供的能够调用手机拍照和相册的方法蛮实用的，一般这个在<code>app</code>里才能实现，浏览器一般也只能选择文件。选择了图片后，可以在回调里拿到图片的<code>id</code>列表,本地的图片<code>id</code>在微信里是可以用来显示图片的，通过该<code>id</code>列表的每个<code>id</code>(注意，这里是单个<code>id</code>，不是列表)，就可以调用微信上传图片的接口，将图片上传到微信服务器上，微信服务器目前对图片的保留时间是3天，上传成功后回调里可以拿到<code>serverId</code>，服务端通过<code>serverId</code>将微信服务器上的图片资源下载到自己的服务器或第三方进行存储。</p>
+</blockquote>
+<p>目前用的微信jssdk就这几个，后续有用上会再补上。</p>
+<p>下面说下最近开发中遇到的问题，避免以后踩同样的坑。</p>
+<h3 id="关于微信里的刷新"><a href="#关于微信里的刷新" class="headerlink" title="关于微信里的刷新"></a>关于微信里的刷新</h3><p>这个问题困扰了好久，也尝试过很多方法。<br>问题场景：有一个订单状态页面：订单提交成功，接单成功，待支付，支付成功待评价，评价成功。我用了一个页面，通过订单状态值来渲染对应的template，所以用户支付后刷新页面就应该看到待评价的内容，因为支付成功后页面刷新，订单状态值就改变了，评价后刷新是同样的道理。<br>尝试过的方法：</p>
+<ul>
+<li><p>window.location.reload();</p>
+</li>
+<li><p>window.location.href = window.location.href;</p>
+</li>
+<li><p>window.location.href = window.location.href + ‘&amp;r=’ + 时间戳</p>
+</li>
+</ul>
+<p>结果均以失败告终，页面刷新，数据没刷新，通过<code>fiddler</code>查看网络请求发现，刷新页面时没有向服务器拿页面，说明拿的只是缓存，这种情况以前确实没遇到过，及时缓存严重，用时间戳的方法也一般可以解决。<br>后来在一个前端群里求助，得到了解决方法：<code>window.location.reload(true)</code>，传<code>true</code>强制刷新，好吧，看来还是得多看看基础，一直不知道这个方法还有个参数。这里也要感谢群里的那位朋友。</p>
+<h3 id="关于js的事件代理"><a href="#关于js的事件代理" class="headerlink" title="关于js的事件代理"></a>关于js的事件代理</h3><p>以前一直有用<code>js</code>的事件代理，这次场景跟以前稍微有点不同，先看代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"equipments-list"</span> @<span class="attr">click</span>=<span class="string">"toStatusPage($event)"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in orders"</span> <span class="attr">class</span>=<span class="string">"equipments-item"</span> <span class="attr">:orderId</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"order-no"</span> <span class="attr">v-text</span>=<span class="string">"'单号'+item.orderNo"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"order-status"</span> <span class="attr">v-text</span>=<span class="string">"item.statusStr"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"equipments-detail"</span> <span class="attr">v-for</span>=<span class="string">"subItem in item.equipments"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"subItem.type+'安装'"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"subItem.brand+subItem.productNo"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"subItem.installWay"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-text</span>=<span class="string">"'费用：'+item.price+'元'"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-text</span>=<span class="string">"item.createTime+'下单'"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">toStatusPage: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> target = event.target;</span><br><span class="line">            <span class="keyword">while</span>(target.tagName != <span class="string">'LI'</span>)&#123;</span><br><span class="line">                target = target.parentNode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> id = target.getAttribute(<span class="string">'orderId'</span>);</span><br><span class="line">            <span class="built_in">window</span>.location.href = Utils.baseUrl + <span class="string">'/html/orderStatus.html?id='</span>+id;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>很简单的一个列表进详情，为了节省内存，使用了代理的方式，用<code>ul</code>来代理事件，最初的想法是<code>li</code>点击的时候获取他的<code>orderId</code>，然后跳转到对应的详情页，当使用代理方式拿到的<code>target</code>可能是<code>span</code>，也可能是<code>p</code>，如果层级很多就很可能是别的什么了。那么这里得想法吧拿到<code>li</code>，所以使用了<code>parentNode</code>这个东东，去判断<code>li</code>在哪，用了一个简单的循环，拿到<code>li</code>后结束循环，执行后面的操作，暂时这样解决了，还没有想到更好的方法，有更好的方法的朋友欢迎留言，让大家都学习下，谢啦！</p>
+</blockquote>
+<p>好了，暂时就总结这么多吧，文中如有错误之处麻烦指正，谢谢！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/微信/">微信</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/04/25/2016-04-25-upload-pic-upyun/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          FormData API 上传文件到又拍云
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/21/2016-03-21-add-event/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">addEvent和removeEvent</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: "372a11e9ce991fcbf79b",
+    clientSecret: "c4b232bf5ac7503fe141fc3ef2f1229f5f22187d",
+    repo: "yl2014.github.io",
+    owner: "yl2014",
+    admin: ["yl2014"],
+    id: "2016-04-11-wx-use",      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 YL2014 备案号：<a href="https://beian.miit.gov.cn" target="_blank"
+          >鄂ICP备2023011238号</a
+        >
+      </div>
+      <div class="footer-right">
+        <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=1.0.0"></script>
+
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jekyll</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">chrome</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">snippets</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">文件上传</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">crm</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssd</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">微信</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nodejs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ecs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">又拍云</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ftp</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">let's encrype</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">https</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vultr</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vps</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shadowsocks</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mongoose</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ngrok</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">算法</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nginx</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://aotu.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凹凸实验室</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://dancdx.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>dancdx&#39;s blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://blog.longyb.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>LongYuBo&#39;s Blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://laily.net" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Laily&#39;s Blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cnblogs.com/aheizi" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>HuangYangQuan&#39;s Blog</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-servebuy" q-show="servebuy">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=51yfkmgw&utm_source=51yfkmgw" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阿里云长期推广</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.vultr.com/?ref=7574159" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>vultr</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">深圳搬砖，挖坑填坑</div>
+  	  	
+    	</section>
+    
+  </div>
+
+</div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275034405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1275034405%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  <script>
+    var cnzzNode = document.getElementById('cnzz_stat_icon_1275034405')
+    var footRight = document.querySelector('.footer-right')
+    if(cnzzNode) {
+      footRight.appendChild(cnzzNode)
+    }
+  </script>
+</body>
+</html>

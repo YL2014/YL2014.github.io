@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://yl.frontjs.cc">
+  <title>内网服务穿透 - ngrok搭建 | YL&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="微信开发时，本地服务调试域名的问题，遂搭建ngrok，内网穿透。很久以前搭建的，现整理到博客里，方便以后查阅">
+<meta name="keywords" content="ngrok">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内网服务穿透 - ngrok搭建">
+<meta property="og:url" content="https://yl.frontjs.cc/2018/11/12/2018-11-12-ngrok/index.html">
+<meta property="og:site_name" content="YL&#39;s Blog">
+<meta property="og:description" content="微信开发时，本地服务调试域名的问题，遂搭建ngrok，内网穿透。很久以前搭建的，现整理到博客里，方便以后查阅">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2023-06-06T05:34:17.556Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内网服务穿透 - ngrok搭建">
+<meta name="twitter:description" content="微信开发时，本地服务调试域名的问题，遂搭建ngrok，内网穿透。很久以前搭建的，现整理到博客里，方便以后查阅">
+  
+    <link rel="alternative" href="/atom.xml" title="YL&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/avatar.jpeg">
+  
+  <link rel="stylesheet" href="/main.css?v=1.0.0">
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/images/avatar.jpeg" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">YL2014</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a data-idx="0" q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a data-idx="1" q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a data-idx="2" q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+    			
+    			<a data-idx="3" q-on="click: openSlider(e, 'servebuy')" href="javascript:void(0)">服务器优惠</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-sort"></i></div>
+  		<h1 class="header-author js-mobile-header hide">YL2014</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/images/avatar.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">YL2014</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+		        
+		        	<li><a href="/archives/">所有文章</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/yl2014" title="github"><i class="icon-github"></i></a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-2018-11-12-ngrok" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      内网服务穿透 - ngrok搭建
+    </h1>
+  
+
+        <a href="/2018/11/12/2018-11-12-ngrok/" class="archive-article-date">
+  	<time datetime="2018-11-12T07:35:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
+</a>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>微信开发时，本地服务调试域名的问题，遂搭建ngrok，内网穿透。很久以前搭建的，现整理到博客里，方便以后查阅</p>
+</blockquote>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ubuntu 16</span><br><span class="line">参考：</span><br><span class="line">https://imququ.com/post/self-hosted-ngrokd.html</span><br><span class="line">http://linfuyan.com/ubuntu-ngrok/</span><br></pre></td></tr></table></figure>
+<h4 id="ecs域名解析"><a href="#ecs域名解析" class="headerlink" title="ecs域名解析"></a>ecs域名解析</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A记录 ngrok.frontjs.cc</span><br><span class="line">CNAME *.ngrok.frontjs.cc -&gt; ngrok.frontjs.cc</span><br></pre></td></tr></table></figure>
+<h4 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h4><ul>
+<li><code>sudo apt-get install build-essential golang mercurial</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 备注：阿里云上默认装的golang是1.6，编译出的文件在mac上报错，可采用源码编译安装golang</span><br><span class="line">golang版本地址：`https://golang.org/dl/`</span><br><span class="line">wget -c https://dl.google.com/go/go1.10.linux-amd64.tar.gz</span><br><span class="line">tar -C /usr/local -zxvf go1.10.linux-amd64.tar.gz</span><br><span class="line"></span><br><span class="line"># 配置环境变量</span><br><span class="line">echo &apos;export GOROOT=/usr/local/go&apos; &gt;&gt; /etc/profile</span><br><span class="line">echo &apos;export PATH=$PATH:$GOROOT/bin&apos; &gt;&gt; /etc/profile</span><br><span class="line">echo &apos;export GOPATH=$HOME/go&apos; &gt;&gt; /etc/profile</span><br><span class="line">echo &apos;export GOROOT_BOOTSTRAP=/usr/local/go&apos; &gt;&gt; /etc/profile</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/inconshreveable/ngrok.git ngrok</span><br><span class="line">cd ngrok</span><br></pre></td></tr></table></figure>
+<h4 id="生成并替换源码里默认的证书"><a href="#生成并替换源码里默认的证书" class="headerlink" title="生成并替换源码里默认的证书"></a>生成并替换源码里默认的证书</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">NGROK_DOMAIN=&quot;ngrok.frontjs.cc&quot;</span><br><span class="line"></span><br><span class="line">openssl genrsa -out base.key 2048</span><br><span class="line">openssl req -new -x509 -nodes -key base.key -days 10000 -subj &quot;/CN=$NGROK_DOMAIN&quot; -out base.pem</span><br><span class="line">openssl genrsa -out server.key 2048</span><br><span class="line">openssl req -new -key server.key -subj &quot;/CN=$NGROK_DOMAIN&quot; -out server.csr</span><br><span class="line">openssl x509 -req -in server.csr -CA base.pem -CAkey base.key -CAcreateserial -days 10000 -out server.crt</span><br><span class="line"></span><br><span class="line">cp base.pem assets/client/tls/ngrokroot.crt</span><br><span class="line">cp server.crt assets/server/tls/snakeoil.crt</span><br><span class="line">cp server.key assets/server/tls/snakeoil.key</span><br></pre></td></tr></table></figure>
+<h4 id="编译包"><a href="#编译包" class="headerlink" title="编译包"></a>编译包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GOOS=linux GOARCH=amd64 make release-server release-client</span><br><span class="line">GOOS=darwin GOARCH=amd64 make release-client</span><br><span class="line">GOOS=windows GOARCH=amd64 make release-client</span><br><span class="line"># 编译后的文件在 bin/，ngroked 为服务器使用，其他拷贝到对应客户端使用</span><br></pre></td></tr></table></figure>
+<h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./bin/ngrokd -tlsKey=server.key -tlsCrt=server.crt -domain=&quot;ngrok.frontjs.cc&quot; -httpAddr=&quot;:7098&quot; -httpsAddr=&quot;:7099&quot;</span><br><span class="line"></span><br><span class="line"># 后台运行</span><br><span class="line">nohup ./bin/ngrokd -tlsKey=server.key -tlsCrt=server.crt -domain=&quot;ngrok.frontjs.cc&quot; -httpAddr=&quot;:7098&quot; -httpsAddr=&quot;:7099&quot; &amp;</span><br></pre></td></tr></table></figure>
+<h4 id="配置并启动客户端"><a href="#配置并启动客户端" class="headerlink" title="配置并启动客户端"></a>配置并启动客户端</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># vim ngrok.cfg</span><br><span class="line">server_addr: ngrok.frontjs.cc:4443</span><br><span class="line">trust_host_root_certs: false</span><br><span class="line"></span><br><span class="line"># 指定子域名</span><br><span class="line">./ngrok -subdomain test -proto=http -config=ngrok.cfg 7001</span><br><span class="line"></span><br><span class="line"># 随机子域名</span><br><span class="line">./ngrok -proto=http -config=ngrok.cfg 7001</span><br><span class="line"></span><br><span class="line"># 打印如下信息</span><br><span class="line">Tunnel Status                 online</span><br><span class="line">Version                       1.7/1.7</span><br><span class="line">Forwarding                    http://test.ngrok.frontjs.cc:7098 -</span><br><span class="line">Web Interface                 127.0.0.1:4040</span><br><span class="line"># Conn                        0</span><br><span class="line">Avg Conn Time                 0.00ms</span><br></pre></td></tr></table></figure>
+<h4 id="nginx-转发配置"><a href="#nginx-转发配置" class="headerlink" title="nginx 转发配置"></a>nginx 转发配置</h4><p>到这里没遇到问题，那么就可以通过<code>http://test.ngrok.frontjs.cc:7098</code>来访问本地<code>7001</code>端口的服务了，下面配置nginx来忽略端口号访问, 添加7098的vhost<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    listen [::]:80;</span><br><span class="line"></span><br><span class="line">    server_name *.ngrok.frontjs.cc;</span><br><span class="line">    proxy_set_header &quot;Host&quot; $host:7098;</span><br><span class="line"></span><br><span class="line">    root /mnt/portal-cms;</span><br><span class="line">    index index.html index.htm;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass_header Server;</span><br><span class="line">      proxy_pass http://127.0.0.1:7098;</span><br><span class="line">      proxy_redirect off;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>重启nginx（service nginx restart）<br><code>http://test.ngrok.frontjs.cc</code>访问本地7001端口服务</p>
+<h5 id="报错及解决方法"><a href="#报错及解决方法" class="headerlink" title="报错及解决方法"></a>报错及解决方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1. 26958 segmentation fault</span><br><span class="line">升级golang到最新版(参考最上面第二个链接，下载源码安装golang)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ngrok/">ngrok</a></li></ul>
+	</div>
+
+      
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2018/11/17/2018-11-17-bfs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          迷宫问题 - 广度优先搜索(BFS)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/11/01/2018-11-01-mongoose-aggregate-gruop/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mongoose分组查询记录</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+
+
+
+
+  
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: "372a11e9ce991fcbf79b",
+    clientSecret: "c4b232bf5ac7503fe141fc3ef2f1229f5f22187d",
+    repo: "yl2014.github.io",
+    owner: "yl2014",
+    admin: ["yl2014"],
+    id: "2018-11-12-ngrok",      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+  gitalk.render('gitalk-container')
+</script>
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+      <div class="footer-left">
+        &copy; 2023 YL2014 备案号：<a href="https://beian.miit.gov.cn" target="_blank"
+          >鄂ICP备2023011238号</a
+        >
+      </div>
+      <div class="footer-right">
+        <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js?v=1.0.0"></script>
+
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">jekyll</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">blog</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">chrome</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">snippets</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">js</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">文件上传</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">crm</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ssd</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">微信</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nodejs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ecs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">又拍云</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ftp</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">let's encrype</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">https</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">git</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vultr</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">vps</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">shadowsocks</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mongoose</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ngrok</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">算法</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">nginx</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">mysql</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">python</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://aotu.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>凹凸实验室</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://dancdx.github.io" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>dancdx&#39;s blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://blog.longyb.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>LongYuBo&#39;s Blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://laily.net" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Laily&#39;s Blog</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cnblogs.com/aheizi" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>HuangYangQuan&#39;s Blog</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-servebuy" q-show="servebuy">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=51yfkmgw&utm_source=51yfkmgw" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>阿里云长期推广</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.vultr.com/?ref=7574159" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>vultr</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">深圳搬砖，挖坑填坑</div>
+  	  	
+    	</section>
+    
+  </div>
+
+</div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1275034405'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1275034405%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+  </div>
+  <script>
+    var cnzzNode = document.getElementById('cnzz_stat_icon_1275034405')
+    var footRight = document.querySelector('.footer-right')
+    if(cnzzNode) {
+      footRight.appendChild(cnzzNode)
+    }
+  </script>
+</body>
+</html>
