@@ -27,7 +27,7 @@
 <meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-9.png">
 <meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-10.png">
 <meta property="og:image" content="https://yl.frontjs.cc/images/2018-10/30-11.png">
-<meta property="og:updated_time" content="2021-01-12T12:13:35.757Z">
+<meta property="og:updated_time" content="2023-06-06T05:34:17.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科学上网：vultr搭建shadowsocks采坑记录">
 <meta name="twitter:description" content="说明：网上很多相关教程，大多数是基于centos的，本教程基于Ubuntu(主要是多账号设置)  注册vutrl账号，购买服务器 注册vutrl https://www.vultr.com">
@@ -169,29 +169,29 @@
 <li>注册vutrl <a href="https://www.vultr.com/?ref=7574159" target="_blank" rel="noopener">https://www.vultr.com</a></li>
 </ul>
 <a id="more"></a>
-<p>新用户注册使用PayPal，充值多少送多少，最多送100刀(果断充值了100刀，后面发现赠送的100刀有效期是1年)<br><img src="/images/2018-10/30-1.png" alt=""></p>
+<p>新用户注册使用PayPal，充值多少送多少，最多送100刀(果断充值了100刀，后面发现赠送的100刀有效期是1年)<br><img src="/images/2018-10/30-1.png" alt></p>
 <ul>
 <li>购买服务器，选择最新的Ubuntu，节点选日本东京</li>
 </ul>
-<p><img src="/images/2018-10/30-2.png" alt=""></p>
-<p><img src="/images/2018-10/30-3.png" alt=""></p>
+<p><img src="/images/2018-10/30-2.png" alt></p>
+<p><img src="/images/2018-10/30-3.png" alt></p>
 <ul>
 <li>配置选最小的，不过$2.5每月的只支持IPV6，不建议选择，我这里选的每月5刀的，选择完后点击<code>deploy now</code>，然后等待服务器配置并启动</li>
 </ul>
-<p><img src="/images/2018-10/30-4.png" alt=""></p>
-<p><img src="/images/2018-10/30-5.png" alt=""></p>
+<p><img src="/images/2018-10/30-4.png" alt></p>
+<p><img src="/images/2018-10/30-5.png" alt></p>
 <ul>
 <li>启动完成后，在<code>Servers</code>里就可以看到刚才购买的vps了</li>
 </ul>
-<p><img src="/images/2018-10/30-6.png" alt=""></p>
+<p><img src="/images/2018-10/30-6.png" alt></p>
 <ul>
 <li>点击服务器，查看服务器的ip，用户名，以及密码</li>
 </ul>
-<p><img src="/images/2018-10/30-7.png" alt=""></p>
+<p><img src="/images/2018-10/30-7.png" alt></p>
 <h4 id="安装shadowsocks"><a href="#安装shadowsocks" class="headerlink" title="安装shadowsocks"></a>安装shadowsocks</h4><ul>
 <li>ssh登录服务器，账号密码来源于上图</li>
 </ul>
-<p><img src="/images/2018-10/30-8.png" alt=""></p>
+<p><img src="/images/2018-10/30-8.png" alt></p>
 <ul>
 <li><p>安装shadowsocks，网上教程很多，这里直接copy过来安装脚本</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh</span><br><span class="line">$ chmod +x shadowsocks.sh</span><br><span class="line">$ ./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log</span><br></pre></td></tr></table></figure>
@@ -209,7 +209,7 @@
 <li><p>添加shadowsocks服务器信息</p>
 </li>
 </ul>
-<p><img src="/images/2018-10/30-9.png" alt=""></p>
+<p><img src="/images/2018-10/30-9.png" alt></p>
 <p>大功告成，可以尝试访问<a href="https://www.google.com" target="_blank" rel="noopener">https://www.google.com</a>，然后可以愉快的工作了</p>
 <h4 id="TCP加速与多账号配置"><a href="#TCP加速与多账号配置" class="headerlink" title="TCP加速与多账号配置"></a>TCP加速与多账号配置</h4><ul>
 <li><p>打开TCP Fast Open</p>
@@ -234,8 +234,8 @@
 <li>vultr防火墙配置</li>
 </ul>
 <p>protocol选择TCP(我同时开启了UDP)，port选择shadowsocks里开启的多个端口，有多少个端口就配置多少个rule(PS: 我看Port旁边显示的<code>or range</code>，不过设置range后无效，有同学可以设置rang的话，麻烦留言指教下，感谢感谢)。rules设置后，在Linked Instances里选择你的实例进行关联</p>
-<p><img src="/images/2018-10/30-10.png" alt=""></p>
-<p><img src="/images/2018-10/30-11.png" alt=""></p>
+<p><img src="/images/2018-10/30-10.png" alt></p>
+<p><img src="/images/2018-10/30-11.png" alt></p>
 <ul>
 <li><p>服务器防火墙配置</p>
 <ul>
@@ -340,13 +340,14 @@
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
-    	<div class="footer-left">
-        &copy; 2021 YL2014
-        备案号：<a href="https://beian.miit.gov.cn" target="_blank">粤ICP备15016170号</a>
-    	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>
-      	</div>
+      <div class="footer-left">
+        &copy; 2023 YL2014 备案号：<a href="https://beian.miit.gov.cn" target="_blank"
+          >鄂ICP备2023011238号</a
+        >
+      </div>
+      <div class="footer-right">
+        <a href="http://hexo.io/" target="_blank">Hexo</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -404,11 +405,15 @@
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">crm</a>
+                <a href="javascript:void(0)">js</a>
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">js</a>
+                <a href="javascript:void(0)">文件上传</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">crm</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -416,19 +421,7 @@
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">linux</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ecs</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ftp</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ubuntu</a>
+                <a href="javascript:void(0)">微信</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -436,11 +429,23 @@
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">ngrok</a>
+                <a href="javascript:void(0)">ecs</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ubuntu</a>
               </li>
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">又拍云</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">linux</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">ftp</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -468,11 +473,15 @@
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">算法</a>
+                <a href="javascript:void(0)">mongoose</a>
               </li>
             
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)">mongoose</a>
+                <a href="javascript:void(0)">ngrok</a>
+              </li>
+            
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)">算法</a>
               </li>
             
               <li class="article-tag-list-item">
@@ -485,14 +494,6 @@
             
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)">python</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">文件上传</a>
-              </li>
-            
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)">微信</a>
               </li>
             
             <div class="clearfix"></div>
